@@ -1,3 +1,5 @@
+<p align="center"><a href="https://nodejs.org/en/" target="_blank"><img src="https://nodejs.org/static/images/logo.svg" width="270"></a></p>
+
 ## 🧬 Cloning this project
 
 1. To run this project you must have <a href="https://git-scm.com/downloads">Git</a> installed on your machine. On your terminal run:

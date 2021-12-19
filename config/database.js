@@ -1,7 +1,7 @@
 module.exports = {
-  username: 'root',
-  password: '',
-  database: 'database_name',
-  host: '127.0.0.1',
-  dialect: 'mysql',
-}
+  username: process.env.username,
+  password: process.env.password,
+  database: process.env.database,
+  host: process.env.host,
+  dialect: "mysql",
+};

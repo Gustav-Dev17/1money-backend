@@ -6,8 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amazonsoft-tech/1money-api.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amazonsoft-tech/1money-api/issues"
+  },
+  "homepage": "https://github.com/amazonsoft-tech/1money-api#readme",
   "dependencies": {
     "express": "^4.17.2",
     "mysql2": "^2.3.3",

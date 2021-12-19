@@ -1,3 +1,7 @@
+const { CreateUserController } = require("../controllers/CreateUserController");
+
 const route = require("express").Router();
 
-module.exports(route);
+route.post("/", CreateUserController)
+
+module.exports = route;

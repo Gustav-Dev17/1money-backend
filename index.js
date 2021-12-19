@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const { User } = require("./app/models");
+const userRoute = require("./app/routes/userRoute")
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-//User.create({ name: 'Teste', email: 'teste@email.com.br', password: '123456' });
+
+app.use("/users", userRoute)
 
 app.listen(3000, () => console.log("Server is running"));

@@ -1,6 +1,6 @@
-const { CreateUserController } = require("../controllers/CreateUserController");
-const { LoginUserController } = require("../controllers/LoginUserController");
-const { UpdateUserController } = require("../controllers/UpdateUserController");
+const { CreateUserController } = require("../controllers/user/CreateUserController");
+const { LoginUserController } = require("../controllers/user/LoginUserController");
+const { UpdateUserController } = require("../controllers/user/UpdateUserController");
 const verifyToken = require("../middlewares/VerifyToken");
 
 const route = require("express").Router();

@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User } = require("../../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -16,14 +16,12 @@ const LoginUserController = async (req, res, next) => {
           { id: user.id, email: user.email, name: user.name },
           process.env.SECRET
         );
-        return res
-          .status(200)
-          .json({
-            token: token,
-            id: user.id,
-            name: user.name,
-            email: user.email,
-          });
+        return res.status(200).json({
+          token: token,
+          id: user.id,
+          name: user.name,
+          email: user.email,
+        });
       } else {
         return res.status(400).json({ error: "Password Incorrect" });
       }

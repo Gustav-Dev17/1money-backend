@@ -9,6 +9,6 @@ const route = require("express").Router();
 route.post("/register", CreateUserController);
 route.post("/login", LoginUserController);
 route.put("/:id", verifyToken, UpdateUserController);
-route.get("/show/:id", verifyToken, ShowUserController);
+route.get("/:id", verifyToken, ShowUserController);
 
 module.exports = route;

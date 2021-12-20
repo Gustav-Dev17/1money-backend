@@ -10,3 +10,5 @@ route.post("/login", LoginUserController);
 route.put("/:id", verifyToken, UpdateUserController);
 
 module.exports = route;
+
+

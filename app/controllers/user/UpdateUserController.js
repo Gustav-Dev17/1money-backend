@@ -15,10 +15,11 @@ const UpdateUserController = async (req, res, next) => {
     user.password = password ? hashPassword : user.password;
 
     await user.save();
-    return res.json({ name: user.name, email: user.email });
+    return res.json({"name": user.name, "email": user.email});
   } catch {
-    return res.status(409).json({ message: "Email exists" });
+    return res.status(500).json({ message: "Error" });
   }
 };
+
 
 module.exports = { UpdateUserController };

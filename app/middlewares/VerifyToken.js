@@ -23,7 +23,7 @@ const verifyToken = (req, res, next) => {
           });
       });
     } else {
-      return res.status(400).json({ message: "Your not authenticate" });
+      return res.status(400).json({ message: "You're not authenticated" });
     }
   } catch (e) {
     return res.status(404).json({ message: "Token not found" });

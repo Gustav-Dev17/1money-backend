@@ -8,15 +8,15 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.beforeCreate((user, options) => {
-
-    return bcrypt.hash(user.password, 10)
-        .then(hash => {
-            user.password = hash;
-        })
-        .catch(err => { 
-            throw new Error(); 
-        });
-});
+    return bcrypt
+      .hash(user.password, 10)
+      .then((hash) => {
+        user.password = hash;
+      })
+      .catch((err) => {
+        throw new Error();
+      });
+  });
 
   return User;
 };

@@ -7,7 +7,7 @@ const CreateUserController = async (req, res, next) => {
       return res.status(409).json({ message: "Email exists" });
     }
     const user = await User.create(req.body);
-    return res.json(user);
+    return res.json({"name": user.name, "email": user.email});
   } catch {
     return res.status(500).json({ message: "error" });
   }

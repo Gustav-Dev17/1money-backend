@@ -21,5 +21,4 @@ const UpdateUserController = async (req, res, next) => {
   }
 };
 
-
 module.exports = { UpdateUserController };

@@ -4,7 +4,7 @@ const CreateUserController = async (req, res, next) => {
   try {
     const userEmail = await User.findOne({ where: { email: req.body.email } });
     if (userEmail) {
-      return res.status(409).json({ message: "Email exists" });
+      return res.status(409).json({ message: "Email already exists" });
     }
     const user = await User.create(req.body);
     return res.json({"name": user.name, "email": user.email});

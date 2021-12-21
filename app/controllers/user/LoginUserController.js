@@ -23,7 +23,7 @@ const LoginUserController = async (req, res, next) => {
           email: user.email,
         });
       } else {
-        return res.status(400).json({ error: "Password Incorrect" });
+        return res.status(400).json({ error: "Incorrect password" });
       }
     } else {
       return res.status(404).json({ message: "Email not found" });

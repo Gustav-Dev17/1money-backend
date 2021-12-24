@@ -31,7 +31,7 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      coursecod: {
+      course_id: {
         allowNull: true,
         type: DataTypes.INTEGER,
         references: { model: 'courses', key: 'id' }

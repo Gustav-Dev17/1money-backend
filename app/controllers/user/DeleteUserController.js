@@ -9,7 +9,7 @@ const DeleteUserController = async (req, res, next) => {
     }
 
     await user.destroy();
-    return res.status(200).json({ message: "User account deleted" });
+    return res.status(200).json({ message: "User account deleted!" });
     
   } catch {
     return res.status(500).json({ message: "Error" });

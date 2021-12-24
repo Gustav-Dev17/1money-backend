@@ -7,8 +7,8 @@ const ShowUserController = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    return res.json({"name": user.name, "email": user.email});
-    // return res.status(200).send({user});
+    return res.json({"name": user.name, "email": user.email, "picture": user.picture});
+    
   } catch {
     return res.status(500).json({ message: "Error" });
   }

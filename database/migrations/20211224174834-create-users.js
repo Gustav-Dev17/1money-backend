@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   up: (queryInterface, DataTypes) => {
     return queryInterface.createTable("Users", {
@@ -6,6 +8,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
+      },
+      usertype: {
+        allowNull: false,
+        type: DataTypes.STRING,
       },
       name: {
         allowNull: false,
@@ -20,6 +26,10 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      picture: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -30,7 +40,7 @@ module.exports = {
       },
     });
   },
-
+  
   down: (queryInterface) => {
     return queryInterface.dropTable("Users");
   },

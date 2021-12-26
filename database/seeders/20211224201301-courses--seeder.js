@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('courses', [{
+    return queryInterface.bulkInsert('Courses', [{
       id: 1,
       name: 'Entendendo o Bitcoin',
       description: 'Aprenda sobre o que é o Bitcoin',

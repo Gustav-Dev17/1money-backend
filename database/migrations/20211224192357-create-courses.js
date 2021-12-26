@@ -20,7 +20,7 @@ module.exports = {
       },
       duration: {
         allowNull: true,
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
       },
       price: {
         allowNull: true,

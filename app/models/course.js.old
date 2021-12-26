@@ -1,0 +1,20 @@
+const lesson = require("./lesson.js.old");
+
+module.exports = (sequelize, DataTypes) => {
+  const Course = sequelize.define("courses", {
+    name: DataTypes.STRING,
+    description: DataTypes.STRING,
+    duration: DataTypes.FLOAT,
+    price: DataTypes.FLOAT,
+    cover: DataTypes.STRING,
+    prevideo: DataTypes.STRING,
+  });
+
+  Course.associate = function(models) {
+    Course.hasMany(models.Task, {
+      foreignKey: 'course_id',
+    })
+  };
+
+  return Course;
+};

@@ -21,7 +21,7 @@ module.exports = {
       },
       duration: {
         allowNull: true,
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
       },
       video: {
         allowNull: false,
@@ -40,9 +40,12 @@ module.exports = {
         type: DataTypes.DATE,
       },
       course_id: {
-        allowNull: true,
         type: DataTypes.INTEGER,
-        references: { model: "Courses", key: "id" },
+        onDelete: 'CASCADE',
+        references: {
+          model: 'courses',
+          key: 'id',
+        }
       },
     });
   },

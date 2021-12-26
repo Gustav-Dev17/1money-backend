@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('lessons', [{
+    return queryInterface.bulkInsert('Lessons', [{
       name: 'Entendendo o Bitcoin',
       sequence: 1,
       duration: 5.5,

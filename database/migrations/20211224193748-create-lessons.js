@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable("Lessons", {
+    return queryInterface.createTable("lessons", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,12 +12,12 @@ module.exports = {
       name: {
         allowNull: false,
         type: DataTypes.STRING,
-        unique: true
+        unique: true,
       },
       sequence: {
         allowNull: true,
         type: DataTypes.INTEGER,
-        unique: true
+        unique: true,
       },
       duration: {
         allowNull: true,
@@ -31,11 +31,6 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      course_id: {
-        allowNull: true,
-        type: DataTypes.INTEGER,
-        references: { model: 'courses', key: 'id' }
-      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -44,10 +39,15 @@ module.exports = {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      course_id: {
+        allowNull: true,
+        type: DataTypes.INTEGER,
+        references: { model: "courses", key: "id" },
+      },
     });
   },
-  
+
   down: (queryInterface) => {
-    return queryInterface.dropTable("Lessons");
+    return queryInterface.dropTable("lessons");
   },
 };

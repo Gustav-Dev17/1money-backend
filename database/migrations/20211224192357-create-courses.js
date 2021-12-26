@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable("Courses", {
+    return queryInterface.createTable("courses", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -41,11 +41,11 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
-      },
+      }
     });
   },
   
   down: (queryInterface) => {
-    return queryInterface.dropTable("Courses");
+    return queryInterface.dropTable("courses");
   },
 };

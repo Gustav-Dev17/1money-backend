@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Lesson = sequelize.define("lessons", {
+  const Lesson = sequelize.define("Lesson", {
     name: DataTypes.STRING,
     sequence: DataTypes.INTEGER,
     duration: DataTypes.FLOAT,

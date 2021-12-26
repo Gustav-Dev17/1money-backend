@@ -8,7 +8,8 @@ const CreateUserController = async (req, res, next) => {
     }
     const user = await User.create(req.body);
     return res.json({"name": user.name, "email": user.email, "picture": user.picture});
-  } catch {
+  } catch (e){
+    console.log(e)
     return res.status(500).json({ message: "error" });
   }
 };

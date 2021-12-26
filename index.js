@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const userRoute = require("./app/routes/userRoute");
+const adminRoute = require("./app/routes/adminRoute");
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRoute);
+app.use("/admin", adminRoute);
 
 app.listen(3000, () => console.log("Server is running"));

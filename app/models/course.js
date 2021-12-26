@@ -1,5 +1,3 @@
-//const lesson = require("./lesson");
-
 module.exports = (sequelize, DataTypes) => {
   const Course = sequelize.define("Course", {
     name: DataTypes.STRING,

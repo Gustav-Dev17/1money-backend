@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     duration: DataTypes.FLOAT,
     video: DataTypes.STRING,
     resource: DataTypes.STRING,
+    course_id: DataTypes.STRING
   });
 
   return Lesson;

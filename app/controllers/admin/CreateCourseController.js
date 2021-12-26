@@ -1,5 +1,4 @@
 const { Course } = require("../../models");
-//const Course = require("../../models/course");
 
 const CreateCourseController = async (req, res, next) => {
   try {
@@ -9,7 +8,8 @@ const CreateCourseController = async (req, res, next) => {
     }
     const course = await Course.create(req.body);
     return res.json(course);
-  } catch {
+  } catch (e) {
+    console.log(e);
     return res.status(500).json({ message: "error" });
   }
 };

@@ -4,7 +4,7 @@ const secret = process.env.SECRET;
 
 const { User } = require("../models");
 
-const verifyToken = (req, res, next) => {
+const verifyToken = (req: any, res: any, next: any) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     if (token) {

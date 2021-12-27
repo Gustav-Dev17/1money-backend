@@ -1,17 +1,23 @@
-const { Course } = require("../../models");
+import { getRepository } from "typeorm";
+import { Courses } from "../../entities/Course";
+import { Request, Response } from "express";
 
-const CreateCourseController = async (req, res, next) => {
-  try {
-    const courseName = await Course.findOne({ where: { name: req.body.name } });
-    if (courseName) {
-      return res.status(409).json({ message: "Course already exists" });
-    }
-    const course = await Course.create(req.body);
-    return res.json(course);
-  } catch (e) {
-    console.log(e);
-    return res.status(500).json({ message: "error" });
+export const CreateCourseController = async (req: Request, res: Response) => {
+  const { name, description, duration, price, cover, prevideo } = req.body;
+  const repo = getRepository(Courses);
+  if (await repo.findOne({name})) {
+    return res.status(409).json({ message: "Name exists!" });
   }
+  const course = repo.create({
+    name,
+    description,
+    duration,
+    price,
+    cover,
+    prevideo,
+  });
+
+  await repo.save(course);
+  return res.json(course);
 };
 
-module.exports = { CreateCourseController };

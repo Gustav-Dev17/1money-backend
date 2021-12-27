@@ -1,11 +1,14 @@
-const {
-  CreateCourseController,
-} = require("../controllers/admin/CreateCourseController");
-const { CreateLessonController } = require("../controllers/admin/CreateLessonController");
+import { CreateCourseController } from "../controllers/admin/CreateCourseController";
+import { GetAllCoursesController } from "../controllers/admin/GetAllCoursesController";
+import { CreateLessonController } from "../controllers/admin/CreateLessonController";
 
-const route = require("express").Router();
+import { Router } from "express";
+import { GetAllLessonsInACoursesController } from "../controllers/admin/GetAllLessonsInACoursesController";
+const router = Router();
 
-route.post("/course", CreateCourseController);
-route.post("/lesson", CreateLessonController)
+router.get("/course", GetAllCoursesController);
+router.post("/course", CreateCourseController);
+router.post("/lesson", CreateLessonController);
+router.get("/course/:id", GetAllLessonsInACoursesController);
 
-module.exports = route;
+export default router;

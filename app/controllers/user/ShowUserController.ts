@@ -1,17 +1,23 @@
-const { User } = require("../../models");
+import { getRepository } from "typeorm";
+import { Users } from "../../entities/User";
+import { Request, Response } from "express";
 
-const ShowUserController = async (req, res, next) => {
+const ShowUserController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const user = await User.findByPk(id);
+    const repo = getRepository(Users);
+    const user = await repo.findOne(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    return res.json({"name": user.name, "email": user.email, "picture": user.picture});
-    
+    return res.json({
+      name: user.name,
+      email: user.email,
+      picture: user.picture,
+    });
   } catch {
-    return res.status(500).json({ message: "Error" });
+    return res.status(500).json({ message: "Error " });
   }
 };
 
-module.exports = { ShowUserController };
+export default ShowUserController;

@@ -44,6 +44,11 @@ export class CreateCourse1640565085599 implements MigrationInterface {
             type: "timestamp",
             default: "now()",
           },
+          {
+            name: "updated_at",
+            type: "timestamp",
+            default: "now()",
+          },
         ],
       })
     );

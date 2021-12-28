@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import express from "express";
 import "./app/database";
-//const userRoute = require("./app/routes/userRoute");
+import userRoute from "./app/routes/userRoute";
 import adminRoute from "./app/routes/adminRoute";
 
 const app = express();
@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-//app.use("/users", userRoute);
+app.use("/users", userRoute);
 app.use("/admin", adminRoute);
 
 app.listen(3000, () => console.log("Server is running"));

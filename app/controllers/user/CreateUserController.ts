@@ -1,17 +1,28 @@
-const { User } = require("../../models");
+import { getRepository } from "typeorm";
+import { Request, Response } from "express";
+import { Users } from "../../entities/User";
+import bcrypt from "bcrypt";
 
-const CreateUserController = async (req, res, next) => {
+export const CreateUserController = async (req: Request, res: Response) => {
   try {
-    const userEmail = await User.findOne({ where: { email: req.body.email } });
-    if (userEmail) {
-      return res.status(409).json({ message: "Email already exists" });
+    const { email, name, password, picture } = req.body;
+    const repo = getRepository(Users);
+    if (await repo.findOne({ email })) {
+      return res.status(409).json({ message: "Email exists!" });
     }
-    const user = await User.create(req.body);
-    return res.json({"name": user.name, "email": user.email, "picture": user.picture});
-  } catch (e){
-    console.log(e)
-    return res.status(500).json({ message: "error" });
+    const hashPassword = await bcrypt.hash(password, 10);
+    const user = repo.create({
+      name,
+      email,
+      password: hashPassword,
+      picture,
+      usertype: "U",
+    });
+    await repo.save(user);
+    return res
+      .status(201)
+      .json({ id: user.id, name: user.name, email: user.email });
+  } catch {
+    return res.status(409).json({ message: "Error creating account!" });
   }
 };
-
-module.exports = { CreateUserController };

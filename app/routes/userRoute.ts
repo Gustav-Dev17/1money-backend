@@ -1,17 +1,18 @@
-const { CreateUserController } = require("../controllers/user/CreateUserController");
-const { LoginUserController } = require("../controllers/user/LoginUserController");
-const { UpdateUserController } = require("../controllers/user/UpdateUserController");
-const { ShowUserController } = require("../controllers/user/ShowUserController");
-const { DeleteUserController } = require("../controllers/user/DeleteUserController");
+//const verifyToken = require("../middlewares/VerifyToken");
 
-const verifyToken = require("../middlewares/VerifyToken");
+import { CreateUserController } from "../controllers/user/CreateUserController";
+import { Router } from "express";
+import LoginUserController from "../controllers/user/LoginUserController";
+import DeleteUserController from "../controllers/user/DeleteUserController";
+import ShowUserController from "../controllers/user/ShowUserController";
+import verifyToken from "../middlewares/VerifyToken";
 
-const route = require("express").Router();
+const router = Router();
 
-route.post("/register", CreateUserController);
-route.post("/login", LoginUserController);
-route.put("/:id", verifyToken, UpdateUserController);
-route.get("/:id", verifyToken, ShowUserController);
-route.delete("/:id", verifyToken, DeleteUserController);
+router.post("/register", CreateUserController);
+router.post("/login", LoginUserController);
+//router.put("/:id", verifyToken, UpdateUserController);
+router.get("/:id", verifyToken, ShowUserController);
+router.delete("/:id", verifyToken, DeleteUserController);
 
-module.exports = route;
+export default router;

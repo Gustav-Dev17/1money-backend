@@ -1,33 +1,29 @@
-const jwt = require("jsonwebtoken");
-
+import { verify } from "jsonwebtoken";
+import { Users } from "../entities/User";
+import { Request, Response, NextFunction } from "express";
+import { getRepository } from "typeorm";
 const secret = process.env.SECRET;
 
-const { User } = require("../models");
+interface IDecoded {
+  id: string;
+  email: string;
+}
 
-const verifyToken = (req: any, res: any, next: any) => {
+const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.json({ message: "Token not found" });
+  }
+  const token = authHeader.split(" ")[1];
   try {
-    const token = req.headers.authorization.split(" ")[1];
-    if (token) {
-      jwt.verify(token, secret, (err, decoded) => {
-        if (err) {
-          return res.status(401).json({ message: "Invalid token" });
-        }
-        req.email = decoded.email;
-        User.findOne({ email: decoded.email })
-          .then((user) => {
-            req.user = user;
-            next();
-          })
-          .catch((err) => {
-            res.status(401).json({ error: err });
-          });
-      });
-    } else {
-      return res.status(400).json({ message: "You're not authenticated" });
-    }
-  } catch (e) {
-    return res.status(404).json({ message: "Token not found" });
+    const decoded = (await verify(token, secret)) as IDecoded;
+    const repo = await getRepository(Users);
+    const user = await repo.findOne({ email: decoded.email });
+    console.log(user);
+    next();
+  } catch {
+    return res.json({ message: "Invalid Token" });
   }
 };
 
-module.exports = verifyToken;
+export default verifyToken;

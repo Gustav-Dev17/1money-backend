@@ -1,9 +1,9 @@
 import { CreateCourseController } from "../controllers/admin/CreateCourseController";
 import { GetAllCoursesController } from "../controllers/admin/GetAllCoursesController";
 import { CreateLessonController } from "../controllers/admin/CreateLessonController";
+import { GetAllLessonsInACoursesController } from "../controllers/admin/GetAllLessonsInACoursesController";
 
 import { Router } from "express";
-import { GetAllLessonsInACoursesController } from "../controllers/admin/GetAllLessonsInACoursesController";
 const router = Router();
 
 router.get("/course", GetAllCoursesController);

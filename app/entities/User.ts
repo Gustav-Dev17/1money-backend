@@ -1,28 +1,25 @@
 import { Entity, Column, CreateDateColumn, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-@Entity("courses")
-export class Courses {
+@Entity("users")
+export class Users {
   @PrimaryColumn()
   id: string;
+
+  @Column()
+  usertype: string;
 
   @Column()
   name: string;
 
   @Column()
-  description: string;
+  email: string;
 
   @Column()
-  duration: string;
+  password: number;
 
   @Column()
-  price: number;
-
-  @Column()
-  cover: string;
-
-  @Column()
-  prevideo: string;
+  picture: string;
 
   @CreateDateColumn()
   created_at: Date;

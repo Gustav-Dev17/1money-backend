@@ -6,7 +6,7 @@ import { GetAllCoursesController } from "../controllers/admin/course/GetAllCours
 import { CreateLessonController } from "../controllers/admin/lesson/CreateLessonController";
 import { GetAllLessonsInACoursesController } from "../controllers/admin/course/GetAllLessonsInACoursesController";
 import { CreateAdminController } from "../controllers/admin/CreateAdminController";
-import LoginAdminController from "../controllers/admin/LoginAdminController";
+import { LoginAdminController } from "../controllers/admin/LoginAdminController";
 
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);

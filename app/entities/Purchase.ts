@@ -10,7 +10,7 @@ import { v4 as uuid } from "uuid";
 import { Users } from "./User";
 
 @Entity("purchases")
-export class Courses {
+export class Purchases {
   @PrimaryColumn()
   id: string;
 

@@ -5,7 +5,7 @@ import { Users } from "../../entities/User";
 import { getRepository } from "typeorm";
 require("dotenv").config();
 
-const LoginAdminController = async (req: Request, res: Response) => {
+export const LoginAdminController = async (req: Request, res: Response) => {
   try {
     const repo = getRepository(Users);
     const user = await repo.findOne({
@@ -39,4 +39,3 @@ const LoginAdminController = async (req: Request, res: Response) => {
   }
 };
 
-export default LoginAdminController;

@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateLesson1640616773932 implements MigrationInterface {
+export class CreateTablePurchases1640633288719 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "lessons",
+        name: "purchases",
         columns: [
           {
             name: "id",
@@ -13,50 +13,46 @@ export class CreateLesson1640616773932 implements MigrationInterface {
             generationStrategy: "uuid",
           },
           {
-            name: "name",
-            type: "varchar",
-            isUnique: true,
-          },
-          {
-            name: "sequence",
+            name: "payment",
             type: "varchar",
             isNullable: false,
           },
           {
-            name: "duration",
+            name: "situation",
             type: "varchar",
             isNullable: false,
           },
           {
-            name: "video",
-            type: "varchar",
+            name: "discount",
+            type: "float",
+            isNullable: true,
+          },
+          {
+            name: "total_price",
+            type: "float",
             isNullable: false,
           },
           {
-            name: "resource",
-            type: "varchar",
+            name: "final_price",
+            type: "float",
+            isNullable: false,
           },
           {
-            name: "created_at",
+            name: "bought_at",
             type: "timestamp",
             default: "now()",
           },
           {
-            name: "updated_at",
-            type: "timestamp",
-            default: "now()",
-          },
-          {
-              name: "course_id",
-              type: "varchar"
+            name: "user_id",
+            type: "varchar"
           }
         ],
 
         foreignKeys: [
             {
-                name: "fk_lessons",
-                columnNames: ['course_id'],
-                referencedTableName: 'courses',
+                name: "fk_purchases",
+                columnNames: ['user_id'],
+                referencedTableName: 'users',
                 referencedColumnNames: ['id']
             }
         ]
@@ -65,6 +61,6 @@ export class CreateLesson1640616773932 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("lessons");
+    await queryRunner.dropTable("purchases");
   }
 }

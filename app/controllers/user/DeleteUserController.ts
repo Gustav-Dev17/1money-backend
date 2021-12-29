@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 const DeleteUserController = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = req;
     const repo = getRepository(Users);
     const user = await repo.findOne(id);
     if (!user) {

@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 const UpdateUserController = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = req
     const repo = getRepository(Users);
     const { name, email, password, picture } = req.body;
     const userEmail = await repo.findOne({email: email});

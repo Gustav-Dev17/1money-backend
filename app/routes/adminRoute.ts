@@ -7,12 +7,13 @@ import { CreateLessonController } from "../controllers/admin/lesson/CreateLesson
 import { GetAllLessonsInACoursesController } from "../controllers/admin/course/GetAllLessonsInACoursesController";
 import { CreateAdminController } from "../controllers/admin/CreateAdminController";
 import { LoginAdminController } from "../controllers/admin/LoginAdminController";
+import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
 
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);
 router.get("/course", GetAllCoursesController);
-router.post("/course", CreateCourseController);
-router.post("/lesson", CreateLessonController);
+router.post("/course", verifyTokenAdmin, CreateCourseController);
+router.post("/lesson", verifyTokenAdmin, CreateLessonController);
 router.get("/course/:id", GetAllLessonsInACoursesController);
 
 export default router;

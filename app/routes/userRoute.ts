@@ -10,8 +10,8 @@ import UpdateUserController from "../controllers/user/UpdateUserController";
 
 router.post("/register", CreateUserController);
 router.post("/login", LoginUserController);
-router.put("/:id", verifyToken, UpdateUserController);
-router.get("/:id", verifyToken, ShowUserController);
-router.delete("/:id", verifyToken, DeleteUserController);
+router.put("/", verifyToken, UpdateUserController);
+router.get("/", verifyToken, ShowUserController);
+router.delete("/", verifyToken, DeleteUserController);
 
 export default router;

@@ -7,9 +7,6 @@ const ShowUserController = async (req: Request, res: Response) => {
     const { id } = req.params;
     const repo = getRepository(Users);
     const user = await repo.findOne(id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
     return res.json({
       name: user.name,
       email: user.email,

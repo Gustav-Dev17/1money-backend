@@ -17,12 +17,18 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
   const token = authHeader.split(" ")[1];
   try {
     const decoded = (await verify(token, secret)) as IDecoded;
-    const repo = await getRepository(Users);
-    const user = await repo.findOne({ email: decoded.email });
-    console.log(user);
-    next();
+    const { id } = req.params;
+    const repo = getRepository(Users);
+    const user = await repo.findOne(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    if (id != decoded.id) {
+      return res.status(400).json({ message: "Invalid Token" });
+    }
+    return next();
   } catch {
-    return res.json({ message: "Invalid Token" });
+    return res.status(400).json({ message: "Invalid Token" });
   }
 };
 

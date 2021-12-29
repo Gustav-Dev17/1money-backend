@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm";
 import { Request, Response } from "express";
-import { Lessons } from "../../entities/Lesson";
+import { Lessons } from "../../../entities/Lesson";
 
 export const CreateLessonController = async (req: Request, res: Response) => {
   try {

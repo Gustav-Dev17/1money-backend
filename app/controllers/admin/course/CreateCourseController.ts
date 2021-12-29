@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Courses } from "../../entities/Course";
+import { Courses } from "../../../entities/Course";
 import { Request, Response } from "express";
 
 export const CreateCourseController = async (req: Request, res: Response) => {
@@ -21,6 +21,6 @@ export const CreateCourseController = async (req: Request, res: Response) => {
     await repo.save(course);
     return res.json(course);
   } catch {
-    return res.status(400).json({message: "Error create course"});
+    return res.status(400).json({ message: "Error create course" });
   }
 };

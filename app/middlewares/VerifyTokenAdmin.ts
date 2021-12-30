@@ -24,6 +24,9 @@ export const verifyTokenAdmin = async (
     const { id } = decoded;
     const repo = getRepository(Users);
     const user = await repo.findOne(id);
+    if (user.usertype != "A") {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }

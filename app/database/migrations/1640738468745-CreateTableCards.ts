@@ -28,8 +28,13 @@ export class CreateTableCards1640738468745 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: "expiration",
-            type: "timestamp",
+            name: "exp_month",
+            type: "varchar",
+            isNullable: false,
+          },
+          {
+            name: "exp_year",
+            type: "varchar",
             isNullable: false,
           },
           {
@@ -39,6 +44,11 @@ export class CreateTableCards1640738468745 implements MigrationInterface {
           },
           {
             name: "created_at",
+            type: "timestamp",
+            default: "now()",
+          },
+          {
+            name: "updated_at",
             type: "timestamp",
             default: "now()",
           },

@@ -1,5 +1,6 @@
 import { Router } from "express";
 const router = Router();
+import multer from "multer";
 
 import { CreateCourseController } from "../controllers/admin/course/CreateCourseController";
 import { GetAllCoursesController } from "../controllers/admin/course/GetAllCoursesController";
@@ -8,12 +9,18 @@ import { GetAllLessonsInACoursesController } from "../controllers/admin/course/G
 import { CreateAdminController } from "../controllers/admin/CreateAdminController";
 import { LoginAdminController } from "../controllers/admin/LoginAdminController";
 import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
+import multerConfig from "../config/multer";
 
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);
 router.get("/course", GetAllCoursesController);
 router.post("/course", verifyTokenAdmin, CreateCourseController);
-router.post("/lesson", verifyTokenAdmin, CreateLessonController);
+router.post(
+  "/lesson",
+  verifyTokenAdmin,
+  multer(multerConfig).single("file"),
+  CreateLessonController
+);
 router.get("/course/:id", GetAllLessonsInACoursesController);
 
 export default router;

@@ -27,6 +27,9 @@ export class Lessons {
   video: string;
 
   @Column()
+  key: string;
+
+  @Column()
   resource: string;
 
   @Column()
@@ -48,4 +51,3 @@ export class Lessons {
     }
   }
 }
-

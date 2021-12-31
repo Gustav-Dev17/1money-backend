@@ -20,12 +20,15 @@
   "homepage": "https://github.com/amazonsoft-tech/1money-api#readme",
   "dependencies": {
     "@types/uuid": "^8.3.3",
+    "aws-sdk": "^2.1048.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.4",
+    "multer-s3": "^2.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
@@ -35,9 +38,12 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
     "@types/body-parser": "^1.19.2",
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.6",
+    "@types/multer": "^1.4.7",
+    "@types/multer-s3": "^2.7.11",
     "@types/node": "^17.0.5",
     "sequelize-cli": "^6.3.0",
     "ts-node-dev": "^1.1.8",

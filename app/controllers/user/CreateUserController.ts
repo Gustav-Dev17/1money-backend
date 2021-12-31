@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 export const CreateUserController = async (req: Request, res: Response) => {
   try {
     const { email, name, password, picture } = req.body;
+    console.log(name)
     const repo = getRepository(Users);
     if (await repo.findOne({ email })) {
       return res.status(409).json({ message: "Email exists!" });

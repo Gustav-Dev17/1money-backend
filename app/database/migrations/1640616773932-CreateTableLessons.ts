@@ -15,7 +15,6 @@ export class CreateTableLesson1640616773932 implements MigrationInterface {
           {
             name: "name",
             type: "varchar",
-            isUnique: true,
           },
           {
             name: "sequence",
@@ -37,6 +36,10 @@ export class CreateTableLesson1640616773932 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "key",
+            type: "varchar",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -47,19 +50,19 @@ export class CreateTableLesson1640616773932 implements MigrationInterface {
             default: "now()",
           },
           {
-              name: "course_id",
-              type: "varchar"
-          }
+            name: "course_id",
+            type: "varchar",
+          },
         ],
 
         foreignKeys: [
-            {
-                name: "fk_lessons",
-                columnNames: ['course_id'],
-                referencedTableName: 'courses',
-                referencedColumnNames: ['id']
-            }
-        ]
+          {
+            name: "fk_lessons",
+            columnNames: ["course_id"],
+            referencedTableName: "courses",
+            referencedColumnNames: ["id"],
+          },
+        ],
       })
     );
   }

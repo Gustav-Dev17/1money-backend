@@ -1,6 +1,8 @@
 import { getRepository } from "typeorm";
 import { Request, Response } from "express";
 import { Lessons } from "../../../entities/Lesson";
+import aws from "aws-sdk";
+const s3 = new aws.S3();
 
 export const UpdateLessonController = async (req: Request, res: Response) => {
   try {
@@ -13,6 +15,10 @@ export const UpdateLessonController = async (req: Request, res: Response) => {
       lesson.sequence = sequence ? sequence : lesson.sequence;
       lesson.duration = duration ? duration : lesson.duration;
       lesson.resource = resourse ? resourse : lesson.resource;
+      s3.deleteObject({
+        Bucket: "uploadfileteste2",
+        Key: lesson.key,
+      }).promise();
       lesson.video = url;
       lesson.key = key;
     } else {

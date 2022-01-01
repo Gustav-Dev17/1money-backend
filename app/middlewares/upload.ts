@@ -1,5 +1,5 @@
 const multer = require("multer");
-module.exports = multer({
+export = multer({
   storage: multer.memoryStorage(),
   fileFilter: (req, file, cb) => {
     const isAccepted = ["video/mp4"].find(

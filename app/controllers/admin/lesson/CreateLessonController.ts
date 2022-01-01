@@ -13,7 +13,6 @@ export const CreateLessonController = async (req: Request, res: Response) => {
     }
 
     const { originalname: size, key, location: url } = req.file;
-
     const lesson = lessonSearch.create({
       name,
       sequence,

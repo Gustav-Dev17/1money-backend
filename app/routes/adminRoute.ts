@@ -10,7 +10,7 @@ import { CreateAdminController } from "../controllers/admin/CreateAdminControlle
 import { LoginAdminController } from "../controllers/admin/LoginAdminController";
 import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
 import multerConfig from "../config/multer";
-
+import { UpdateLessonController } from "../controllers/admin/lesson/UpdateLessonController";
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);
 router.get("/course", GetAllCoursesController);
@@ -22,5 +22,11 @@ router.post(
   CreateLessonController
 );
 router.get("/course/:id", GetAllLessonsInACoursesController);
+router.put(
+  "/lesson/:id",
+  verifyTokenAdmin,
+  multer(multerConfig).single("file"),
+  UpdateLessonController
+);
 
 export default router;

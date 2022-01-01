@@ -2,7 +2,7 @@ import { getRepository } from "typeorm";
 import { Users } from "../../entities/User";
 import { Request, Response } from "express";
 
-const ShowUserController = async (req: Request, res: Response) => {
+const GetUserController = async (req: Request, res: Response) => {
   try {
     const { id } = req;
     const repo = getRepository(Users);
@@ -17,4 +17,4 @@ const ShowUserController = async (req: Request, res: Response) => {
   }
 };
 
-export default ShowUserController;
+export default GetUserController;

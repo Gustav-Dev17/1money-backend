@@ -1,5 +1,6 @@
-import { Entity, Column, CreateDateColumn, PrimaryColumn } from "typeorm";
+import { Entity, Column, CreateDateColumn, PrimaryColumn, BeforeInsert, BeforeUpdate } from "typeorm";
 import { v4 as uuid } from "uuid";
+import bcrypt from "bcrypt";
 
 @Entity("users")
 export class Users {
@@ -32,4 +33,11 @@ export class Users {
       this.id = uuid();
     }
   }
+
+  @BeforeInsert()
+    @BeforeUpdate()
+    async setPassword(password: string) {
+      const salt = await bcrypt.genSalt()
+      this.password = await bcrypt.hash(password || this.password, salt)
+    }
 }

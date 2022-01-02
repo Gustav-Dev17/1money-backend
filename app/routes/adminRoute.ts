@@ -1,7 +1,5 @@
 import { Router } from "express";
-const router = Router();
 import multer from "multer";
-
 import { CreateCourseController } from "../controllers/admin/course/CreateCourseController";
 import { GetAllCoursesController } from "../controllers/admin/course/GetAllCoursesController";
 import { CreateLessonController } from "../controllers/admin/lesson/CreateLessonController";
@@ -12,6 +10,10 @@ import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
 import GetAdminController from "../controllers/admin/GetAdminController";
 import multerConfig from "../config/aws";
 import { UpdateLessonController } from "../controllers/admin/lesson/UpdateLessonController";
+import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLessonController";
+
+const router = Router();
+
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);
 router.get("/", GetAdminController);
@@ -29,6 +31,13 @@ router.put(
   verifyTokenAdmin,
   multer(multerConfig).single("file"),
   UpdateLessonController
+);
+
+router.delete(
+  "/lesson/:id",
+  verifyTokenAdmin,
+  multer(multerConfig).single("file"),
+  DeleteLessonController
 );
 
 export default router;

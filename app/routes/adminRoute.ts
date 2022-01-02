@@ -10,7 +10,7 @@ import { CreateAdminController } from "../controllers/admin/CreateAdminControlle
 import { LoginAdminController } from "../controllers/admin/LoginAdminController";
 import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
 import GetAdminController from "../controllers/admin/GetAdminController";
-import multerConfig from "../config/multer";
+import multerConfig from "../config/aws";
 import { UpdateLessonController } from "../controllers/admin/lesson/UpdateLessonController";
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);

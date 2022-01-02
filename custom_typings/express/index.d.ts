@@ -1,6 +1,8 @@
 declare namespace Express {
   interface Request {
-    id: string
+    id: string,
+    key: string,
+    urlPhoto: string
     file: {
       id: string;
       location: string;

@@ -14,25 +14,30 @@ import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLesson
 
 const router = Router();
 
+//login & register routes
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);
 router.get("/", GetAdminController);
-router.get("/course", GetAllCoursesController);
+
+//courses routes
 router.post("/course", verifyTokenAdmin, CreateCourseController);
+router.get("/courses", GetAllCoursesController);
+
+router.get("/course/:id", GetAllLessonsInACoursesController);
+
+//lesson routes
 router.post(
   "/lesson",
   verifyTokenAdmin,
   multer(multerConfig).single("file"),
   CreateLessonController
 );
-router.get("/course/:id", GetAllLessonsInACoursesController);
 router.put(
   "/lesson/:id",
   verifyTokenAdmin,
   multer(multerConfig).single("file"),
   UpdateLessonController
 );
-
 router.delete(
   "/lesson/:id",
   verifyTokenAdmin,

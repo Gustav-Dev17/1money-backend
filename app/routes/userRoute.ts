@@ -1,7 +1,5 @@
 import { CreateUserController } from "../controllers/user/CreateUserController";
 import { Router } from "express";
-const router = Router();
-
 import LoginUserController from "../controllers/user/LoginUserController";
 import DeleteUserController from "../controllers/user/DeleteUserController";
 import GetUserController from "../controllers/user/GetUserController";
@@ -10,6 +8,12 @@ import UpdateUserController from "../controllers/user/UpdateUserController";
 import { UpdateProfileController } from "../controllers/user/UpdateProfileController";
 import multer from "multer";
 import multerConfig from "../config/multer";
+import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
+import GetCourseController from "../controllers/user/course/GetCourseController";
+
+const router = Router();
+
+//profile routes
 
 router.post("/register", CreateUserController);
 router.post("/login", LoginUserController);
@@ -22,5 +26,13 @@ router.put(
   multer(multerConfig).single("photo"),
   UpdateProfileController
 );
+
+//courses routes
+
+router.get("/courses", GetAllCoursesController);
+router.get("/course/:id", GetCourseController);
+
+//lessons routes
+
 
 export default router;

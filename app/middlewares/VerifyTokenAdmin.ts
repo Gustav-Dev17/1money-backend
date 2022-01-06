@@ -1,5 +1,5 @@
 import { verify } from "jsonwebtoken";
-import { Users } from "../entities/User";
+import { Users, UserType } from "../entities/User";
 import { Request, Response, NextFunction } from "express";
 import { getRepository } from "typeorm";
 const secret = process.env.SECRET_ADMIN;
@@ -24,7 +24,7 @@ export const verifyTokenAdmin = async (
     const { id } = decoded;
     const repo = getRepository(Users);
     const user = await repo.findOne(id);
-    if (user.usertype != "A") {
+    if (user.role != UserType.ADMIN) {
       return res.status(401).json({ message: "Unauthorized" });
     }
     if (!user) {

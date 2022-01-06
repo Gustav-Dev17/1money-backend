@@ -8,7 +8,7 @@ import { CreateAdminController } from "../controllers/admin/CreateAdminControlle
 import { LoginAdminController } from "../controllers/admin/LoginAdminController";
 import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
 import GetAdminController from "../controllers/admin/GetAdminController";
-import multerConfig from "../config/aws";
+import multerVideo from "../config/multerVideo";
 import { UpdateLessonController } from "../controllers/admin/lesson/UpdateLessonController";
 import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLessonController";
 
@@ -29,20 +29,15 @@ router.get("/course/:id", GetAllLessonsInACoursesController);
 router.post(
   "/lesson",
   verifyTokenAdmin,
-  multer(multerConfig).single("file"),
+  multer(multerVideo).single("video"),
   CreateLessonController
 );
 router.put(
   "/lesson/:id",
   verifyTokenAdmin,
-  multer(multerConfig).single("file"),
+  multer(multerVideo).single("video"),
   UpdateLessonController
 );
-router.delete(
-  "/lesson/:id",
-  verifyTokenAdmin,
-  multer(multerConfig).single("file"),
-  DeleteLessonController
-);
+router.delete("/lesson/:id", verifyTokenAdmin, DeleteLessonController);
 
 export default router;

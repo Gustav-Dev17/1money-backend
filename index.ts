@@ -1,6 +1,7 @@
 import "reflect-metadata";
-import express from "express";
+require("dotenv").config();
 import "./app/database";
+import express from "express";
 import userRoute from "./app/routes/userRoute";
 import adminRoute from "./app/routes/adminRoute";
 import bodyParser from "body-parser";

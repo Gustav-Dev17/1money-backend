@@ -1,15 +1,16 @@
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
-import { Users } from "../../entities/User";
+
 import { getRepository } from "typeorm";
-require("dotenv").config();
+import { Users, UserType } from "../../entities/User";
 
 export const LoginAdminController = async (req: Request, res: Response) => {
   try {
     const repo = getRepository(Users);
     const user = await repo.findOne({
-      where: { email: req.body.email, usertype: "A" },
+      where: { email: req.body.email, role: UserType.ADMIN },
     });
     if (user) {
       const password_valid = await bcrypt.compare(
@@ -33,9 +34,8 @@ export const LoginAdminController = async (req: Request, res: Response) => {
     } else {
       return res.status(404).json({ message: "Email not found" });
     }
-  } catch (e){
-    console.log(e)
+  } catch (e) {
+    console.log(e);
     return res.status(500).json({ message: "Error login" });
   }
 };
-

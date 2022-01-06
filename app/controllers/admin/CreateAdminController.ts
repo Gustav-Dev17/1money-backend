@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm";
 import { Request, Response } from "express";
-import { Users } from "../../entities/User";
+import { Users, UserType } from "../../entities/User";
 
 export const CreateAdminController = async (req: Request, res: Response) => {
   try {
@@ -14,13 +14,14 @@ export const CreateAdminController = async (req: Request, res: Response) => {
       email,
       password,
       picture,
-      usertype: "A",
+      role: UserType.ADMIN,
     });
     await repo.save(user);
     return res
       .status(201)
       .json({ id: user.id, name: user.name, email: user.email });
-  } catch {
+  } catch (e) {
+    console.log(e);
     return res.status(409).json({ message: "Error creating account!" });
   }
 };

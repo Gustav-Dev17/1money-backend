@@ -7,7 +7,7 @@ import verifyToken from "../middlewares/VerifyToken";
 import UpdateUserController from "../controllers/user/UpdateUserController";
 import { UpdateProfileController } from "../controllers/user/UpdateProfileController";
 import multer from "multer";
-import multerConfig from "../config/multer";
+import multerPhoto from "../config/multerPhoto";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
 import GetCourseController from "../controllers/user/course/GetCourseController";
 
@@ -23,7 +23,7 @@ router.delete("/", verifyToken, DeleteUserController);
 router.put(
   "/profile",
   verifyToken,
-  multer(multerConfig).single("photo"),
+  multer(multerPhoto).single("photo"),
   UpdateProfileController
 );
 

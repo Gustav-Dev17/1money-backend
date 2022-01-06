@@ -19,14 +19,11 @@ export class Users {
   @PrimaryColumn()
   id: string;
 
-  @Column()
-  usertype: string;
-
   @Column({
     name: "usertype",
     type: "enum",
     enum: UserType,
-    default: UserType.USER
+    default: UserType.USER,
   })
   role: UserType;
 

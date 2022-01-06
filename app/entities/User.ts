@@ -9,6 +9,11 @@ import {
 import { v4 as uuid } from "uuid";
 import bcrypt from "bcrypt";
 
+export enum UserType {
+  ADMIN = "A",
+  USER = "U",
+}
+
 @Entity("users")
 export class Users {
   @PrimaryColumn()
@@ -16,6 +21,14 @@ export class Users {
 
   @Column()
   usertype: string;
+
+  @Column({
+    name: "usertype",
+    type: "enum",
+    enum: UserType,
+    default: UserType.USER
+  })
+  role: UserType;
 
   @Column()
   name: string;

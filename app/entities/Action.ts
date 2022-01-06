@@ -9,16 +9,26 @@ import {
 import { v4 as uuid } from "uuid";
 import { Users } from "./User";
 
-@Entity("purchases")
-export class Purchases {
+export enum ActionSituation {
+  CO = "CO",
+  CA = "CA",
+  FA = "FA",
+}
+
+@Entity("actions")
+export class Actions {
   @PrimaryColumn()
   id: string;
 
   @Column()
   payment: string;
 
-  @Column()
-  situation: string;
+  @Column({
+    name: "situation",
+    type: "enum",
+    enum: ActionSituation,
+  })
+  role: ActionSituation;
 
   @Column()
   discount: number;

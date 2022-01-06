@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateTablePurchases1640633288719 implements MigrationInterface {
+export class CreateTableActions1640633288719 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "purchases",
+        name: "actions",
         columns: [
           {
             name: "id",
@@ -17,10 +17,10 @@ export class CreateTablePurchases1640633288719 implements MigrationInterface {
             type: "varchar",
             isNullable: false,
           },
-          {
-            name: "situation",
-            type: "varchar",
-            isNullable: false,
+         {
+            name: 'situation',
+            type: 'enum',
+            enum: ['CA', 'CO', 'FA'],
           },
           {
             name: "discount",
@@ -50,7 +50,7 @@ export class CreateTablePurchases1640633288719 implements MigrationInterface {
 
         foreignKeys: [
             {
-                name: "fk_purchases",
+                name: "fk_actions",
                 columnNames: ['user_id'],
                 referencedTableName: 'users',
                 referencedColumnNames: ['id']
@@ -61,6 +61,6 @@ export class CreateTablePurchases1640633288719 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("purchases");
+    await queryRunner.dropTable("actions");
   }
 }

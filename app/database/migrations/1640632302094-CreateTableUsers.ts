@@ -13,9 +13,9 @@ export class CreateTableUsers1640632302094 implements MigrationInterface {
             generationStrategy: "uuid",
           },
           {
-            name: "usertype",
-            type: "varchar",
-            isUnique: false,
+            name: 'usertype',
+            type: 'enum',
+            enum: ['U', 'A'],
           },
           {
             name: "name",

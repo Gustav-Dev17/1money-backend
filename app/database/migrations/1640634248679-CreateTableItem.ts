@@ -1,13 +1,13 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateTableCart1640634248679 implements MigrationInterface {
+export class CreateTableItems1640634248679 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "cart",
+        name: "items",
         columns: [
           {
-            name: "purchase_id",
+            name: "action_id",
             type: "varchar"
           },
           {
@@ -23,13 +23,13 @@ export class CreateTableCart1640634248679 implements MigrationInterface {
 
         foreignKeys: [
             {
-                name: "fk_cart_purchase",
-                columnNames: ['purchase_id'],
-                referencedTableName: 'purchases',
+                name: "fk_items_action",
+                columnNames: ['action_id'],
+                referencedTableName: 'actions',
                 referencedColumnNames: ['id']
             },
             {
-                name: "fk_cart_course",
+                name: "fk_items_course",
                 columnNames: ['course_id'],
                 referencedTableName: 'courses',
                 referencedColumnNames: ['id']
@@ -40,6 +40,6 @@ export class CreateTableCart1640634248679 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("cart");
+    await queryRunner.dropTable("items");
   }
 }

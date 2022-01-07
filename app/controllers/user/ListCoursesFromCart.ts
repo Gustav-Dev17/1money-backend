@@ -3,7 +3,6 @@ import { getRepository } from "typeorm";
 import { Request, Response } from "express";
 import { Actions, ActionSituation } from "../../entities/Action";
 import { Item } from "../../entities/Item";
-import { where } from "sequelize/dist";
 
 export const ListCoursesFromCart = async (req: Request, res: Response) => {
   try {
@@ -13,6 +12,8 @@ export const ListCoursesFromCart = async (req: Request, res: Response) => {
       user_id: req.id,
       situation: ActionSituation.CA,
     });
+
+    if (!actions) return res.json([]);
 
     const itemsCart = await repoItem.find({
       where: { action_id: actions.id },

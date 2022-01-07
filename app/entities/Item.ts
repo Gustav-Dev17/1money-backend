@@ -11,7 +11,7 @@ import { Courses } from "./Course";
 import { Actions } from "./Action";
 
 @Entity("items")
-export class Lessons {
+export class Item {
   @PrimaryColumn()
   id: string;
 
@@ -21,6 +21,9 @@ export class Lessons {
   @Column()
   course_id: string;
 
+  @Column()
+  total_price: number
+
   @ManyToOne(() => Actions)
   @JoinColumn({ name: "action_id" })
   action: Actions;
@@ -28,12 +31,6 @@ export class Lessons {
   @ManyToOne(() => Courses)
   @JoinColumn({ name: "course_id" })
   course: Courses;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @CreateDateColumn()
-  updated_at: Date;
 
   constructor() {
     if (!this.id) {

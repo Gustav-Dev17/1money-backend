@@ -7,12 +7,18 @@ export class CreateTableItems1640634248679 implements MigrationInterface {
         name: "items",
         columns: [
           {
+            name: "id",
+            type: "varchar",
+            isPrimary: true,
+            generationStrategy: "uuid",
+          },
+          {
             name: "action_id",
-            type: "varchar"
+            type: "varchar",
           },
           {
             name: "course_id",
-            type: "varchar"
+            type: "varchar",
           },
           {
             name: "total_price",
@@ -22,19 +28,19 @@ export class CreateTableItems1640634248679 implements MigrationInterface {
         ],
 
         foreignKeys: [
-            {
-                name: "fk_items_action",
-                columnNames: ['action_id'],
-                referencedTableName: 'actions',
-                referencedColumnNames: ['id']
-            },
-            {
-                name: "fk_items_course",
-                columnNames: ['course_id'],
-                referencedTableName: 'courses',
-                referencedColumnNames: ['id']
-            }
-        ]
+          {
+            name: "fk_items_action",
+            columnNames: ["action_id"],
+            referencedTableName: "actions",
+            referencedColumnNames: ["id"],
+          },
+          {
+            name: "fk_items_course",
+            columnNames: ["course_id"],
+            referencedTableName: "courses",
+            referencedColumnNames: ["id"],
+          },
+        ],
       })
     );
   }

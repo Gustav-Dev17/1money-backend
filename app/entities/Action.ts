@@ -28,7 +28,7 @@ export class Actions {
     type: "enum",
     enum: ActionSituation,
   })
-  role: ActionSituation;
+  situation: ActionSituation;
 
   @Column()
   discount: number;
@@ -41,6 +41,9 @@ export class Actions {
 
   @CreateDateColumn()
   bought_at: Date;
+
+  @Column()
+  user_id: string;
 
   @ManyToOne(() => Users)
   @JoinColumn({ name: "user_id" })

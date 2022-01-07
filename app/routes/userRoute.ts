@@ -10,6 +10,8 @@ import multer from "multer";
 import multerPhoto from "../config/multerPhoto";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
 import GetCourseController from "../controllers/user/course/GetCourseController";
+import { AddCourseToCart } from "../controllers/user/course/ AddCourseToCart";
+import { ListCoursesFromCart } from "../controllers/user/ListCoursesFromCart";
 
 const router = Router();
 
@@ -31,8 +33,9 @@ router.put(
 
 router.get("/courses", GetAllCoursesController);
 router.get("/course/:id", GetCourseController);
+router.post("/cart", verifyToken, AddCourseToCart);
+router.get("/cart", verifyToken, ListCoursesFromCart);
 
 //lessons routes
-
 
 export default router;

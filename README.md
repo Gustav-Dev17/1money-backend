@@ -16,16 +16,16 @@ cd 1money-api
 
 ## 💿 Installing dependencies
 
-1. You must have NPM or Yarn installed so you can install the dependencies this project demands. In the root directory, run:
-
-```
-npm install
-```
-
-in case you have Yarn instead of NPM run:
+1. You must have Yarn or NPM installed so you can install the dependencies this project demands. In the root directory, run:
 
 ```
 yarn install
+```
+
+in case you have NPM instead of Yarn run:
+
+```
+npm install
 ```
 
 
@@ -34,5 +34,51 @@ yarn install
 1.  You must have Node installed on your machine to run this project on localhost. Run:
 
 ```
-node index.js
+yarn dev
+```
+
+or
+
+```
+npm run dev
+```
+
+## 🔗 Database connection (TypeORM)
+
+1.  Rename file ```.env.example``` to ```.env```
+
+2.  In the file ```.env```, set the environment variables you'll need to use:
+```TYPEORM_CONNECTION=      set the connection here, example: mysql or postgresql
+TYPEORM_HOST=               set the host here
+TYPEORM_USERNAME=           set the database username
+TYPEORM_PASSWORD=           set the database password
+TYPEORM_DATABASE=           set the database name
+TYPEORM_PORT=               set the database port
+TYPEORM_MIGRATIONS=         set the directory where the migrations (if any) are located and the language they're written in (.ts or .js)
+TYPEORM_MIGRATIONS_DIR=     set the directory where the migrations (if any) are located
+TYPEORM_ENTITIES=           set the directory where the entities are located and the language they're written in (.ts or .js)
+TYPEORM_ENTITIES_DIR=       set the directory where the entities are located
+SECRET=                     set the user secret key you'll use for JWT
+SECRET_ADMIN=               set the admin secret key you'll use for JWT
+```
+
+## 📅 Running migrations
+
+1.  To run the migrations and create the database tables run:
+```
+yarn typeorm migration:run
+```
+or 
+
+```
+npm run typeorm migration:run
+```
+
+2.  To revert the last migration you ran run:
+```
+yarn typeorm migration:revert
+```
+or
+```
+npm run typeorm migration:revert
 ```

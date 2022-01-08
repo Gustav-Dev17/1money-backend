@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Users } from "../../entities/User";
+import { Users } from "../../../entities/User";
 import { Request, Response } from "express";
 
 const GetUserController = async (req: Request, res: Response) => {

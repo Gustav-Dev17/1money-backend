@@ -1,8 +1,8 @@
 import { getRepository } from "typeorm";
 import { Request, Response } from "express";
-import { Users, UserType } from "../../entities/User";
+import { Users, UserType } from "../../../entities/User";
 
-export const CreateAdminController = async (req: Request, res: Response) => {
+export const CreateUserController = async (req: Request, res: Response) => {
   try {
     const { email, name, password, picture } = req.body;
     const repo = getRepository(Users);
@@ -14,7 +14,7 @@ export const CreateAdminController = async (req: Request, res: Response) => {
       email,
       password,
       picture,
-      role: UserType.ADMIN,
+      role: UserType.USER,
     });
     await repo.save(user);
     return res

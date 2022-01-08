@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 
 import { getRepository } from "typeorm";
-import { Users, UserType } from "../../entities/User";
+import { Users, UserType } from "../../../entities/User";
 
 export const LoginAdminController = async (req: Request, res: Response) => {
   try {

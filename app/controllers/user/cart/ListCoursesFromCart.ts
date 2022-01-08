@@ -1,8 +1,8 @@
 import { getRepository } from "typeorm";
 
 import { Request, Response } from "express";
-import { Actions, ActionSituation } from "../../entities/Action";
-import { Item } from "../../entities/Item";
+import { Actions, ActionSituation } from "../../../entities/Action";
+import { Item } from "../../../entities/Item";
 
 export const ListCoursesFromCart = async (req: Request, res: Response) => {
   try {

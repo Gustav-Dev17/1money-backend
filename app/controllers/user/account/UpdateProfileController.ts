@@ -1,10 +1,10 @@
 import { getRepository } from "typeorm";
-import { Users } from "../../entities/User";
+import { Users } from "../../../entities/User";
 import { Request, Response } from "express";
 import {
   deletePhoto,
   uploadPhotoProfile,
-} from "../../../utils/uploadPhotoProfile";
+} from "../../../../utils/uploadPhotoProfile";
 
 export const UpdateProfileController = async (req: Request, res: Response) => {
   try {

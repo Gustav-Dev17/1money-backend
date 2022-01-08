@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
-import { Users } from "../../entities/User";
+import { Users } from "../../../entities/User";
 import { getRepository } from "typeorm";
 require("dotenv").config();
 

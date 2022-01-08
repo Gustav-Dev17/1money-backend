@@ -4,10 +4,10 @@ import { CreateCourseController } from "../controllers/admin/course/CreateCourse
 import { GetAllCoursesController } from "../controllers/admin/course/GetAllCoursesController";
 import { CreateLessonController } from "../controllers/admin/lesson/CreateLessonController";
 import { GetAllLessonsInACoursesController } from "../controllers/admin/course/GetAllLessonsInACoursesController";
-import { CreateAdminController } from "../controllers/admin/CreateAdminController";
-import { LoginAdminController } from "../controllers/admin/LoginAdminController";
+import { CreateAdminController } from "../controllers/admin/account/CreateAdminController";
+import { LoginAdminController } from "../controllers/admin/account/LoginAdminController";
 import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
-import GetAdminController from "../controllers/admin/GetAdminController";
+import GetAdminController from "../controllers/admin/account/GetAdminController";
 import multerVideo from "../config/multerVideo";
 import { UpdateLessonController } from "../controllers/admin/lesson/UpdateLessonController";
 import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLessonController";

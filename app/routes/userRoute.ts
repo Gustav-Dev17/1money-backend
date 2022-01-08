@@ -1,17 +1,17 @@
-import { CreateUserController } from "../controllers/user/CreateUserController";
+import { CreateUserController } from "../controllers/user/account/CreateUserController";
 import { Router } from "express";
-import LoginUserController from "../controllers/user/LoginUserController";
-import DeleteUserController from "../controllers/user/DeleteUserController";
-import GetUserController from "../controllers/user/GetUserController";
+import LoginUserController from "../controllers/user/account/LoginUserController";
+import DeleteUserController from "../controllers/user/account/DeleteUserController";
+import GetUserController from "../controllers/user/account/GetUserController";
 import verifyToken from "../middlewares/VerifyToken";
-import UpdateUserController from "../controllers/user/UpdateUserController";
-import { UpdateProfileController } from "../controllers/user/UpdateProfileController";
+import UpdateUserController from "../controllers/user/account/UpdateUserController";
+import { UpdateProfileController } from "../controllers/user/account/UpdateProfileController";
 import multer from "multer";
 import multerPhoto from "../config/multerPhoto";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
 import GetCourseController from "../controllers/user/course/GetCourseController";
 import { AddCourseToCart } from "../controllers/user/course/ AddCourseToCart";
-import { ListCoursesFromCart } from "../controllers/user/ListCoursesFromCart";
+import { ListCoursesFromCart } from "../controllers/user/cart/ListCoursesFromCart";
 
 const router = Router();
 

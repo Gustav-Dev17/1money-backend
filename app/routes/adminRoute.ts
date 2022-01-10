@@ -3,7 +3,7 @@ import multer from "multer";
 import { CreateCourseController } from "../controllers/admin/course/CreateCourseController";
 import { GetAllCoursesController } from "../controllers/admin/course/GetAllCoursesController";
 import { CreateLessonController } from "../controllers/admin/lesson/CreateLessonController";
-import { GetAllLessonsInACoursesController } from "../controllers/admin/course/GetAllLessonsInACoursesController";
+import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
 import { CreateAdminController } from "../controllers/admin/account/CreateAdminController";
 import { LoginAdminController } from "../controllers/admin/account/LoginAdminController";
 import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
@@ -23,7 +23,7 @@ router.get("/", GetAdminController);
 router.post("/course", verifyTokenAdmin, CreateCourseController);
 router.get("/courses", GetAllCoursesController);
 
-router.get("/course/:id", GetAllLessonsInACoursesController);
+router.get("/course/:id", GetAllLessonsInACourseController);
 
 //lesson routes
 router.post(

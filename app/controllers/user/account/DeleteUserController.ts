@@ -14,7 +14,7 @@ const DeleteUserController = async (req: Request, res: Response) => {
     await repo.delete(id);
     return res.status(200).json({ message: "User account deleted!" });
   } catch {
-    return res.status(500).json({ message: "Error delete account" });
+    return res.status(500).json({ message: "Error when deleting account" });
   }
 };
 

@@ -36,6 +36,6 @@ export const LoginAdminController = async (req: Request, res: Response) => {
     }
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ message: "Error login" });
+    return res.status(500).json({ message: "Error when trying to login" });
   }
 };

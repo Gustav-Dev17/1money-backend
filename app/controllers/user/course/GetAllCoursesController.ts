@@ -8,6 +8,6 @@ export const GetAllCoursesController = async (req: Request, res: Response) => {
     const courses = await repo.find({ order: { created_at: "ASC" } });
     return res.json(courses);
   } catch {
-    return res.status(400).json({ message: "Error list courses" });
+    return res.status(400).json({ message: "Error when listing courses" });
   }
 };

@@ -7,7 +7,7 @@ export const CreateCourseController = async (req: Request, res: Response) => {
     const { name, description, duration, price, cover, prevideo } = req.body;
     const repo = getRepository(Courses);
     if (await repo.findOne({ name })) {
-      return res.status(409).json({ message: "Name exists!" });
+      return res.status(409).json({ message: "Name already exists!" });
     }
     const course = repo.create({
       name,
@@ -21,6 +21,6 @@ export const CreateCourseController = async (req: Request, res: Response) => {
     await repo.save(course);
     return res.json(course);
   } catch {
-    return res.status(400).json({ message: "Error create course" });
+    return res.status(400).json({ message: "Error when creating a course" });
   }
 };

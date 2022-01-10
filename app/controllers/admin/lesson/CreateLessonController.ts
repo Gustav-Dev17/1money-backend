@@ -31,6 +31,6 @@ export const CreateLessonController = async (req: Request, res: Response) => {
     return res.json(lesson);
   } catch (e) {
     console.log(e);
-    return res.status(400).json({ message: "Error create lesson" });
+    return res.status(400).json({ message: "Error when creating a lesson" });
   }
 };

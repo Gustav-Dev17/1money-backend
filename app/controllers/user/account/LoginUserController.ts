@@ -32,7 +32,7 @@ const LoginUserController = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "Email not found" });
     }
   } catch {
-    return res.status(500).json({ message: "Error login" });
+    return res.status(500).json({ message: "Error when trying to login" });
   }
 };
 

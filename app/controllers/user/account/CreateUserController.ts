@@ -22,6 +22,6 @@ export const CreateUserController = async (req: Request, res: Response) => {
       .json({ id: user.id, name: user.name, email: user.email });
   } catch (e) {
     console.log(e);
-    return res.status(409).json({ message: "Error creating account!" });
+    return res.status(409).json({ message: "Error when creating user account!" });
   }
 };

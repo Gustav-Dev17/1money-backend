@@ -11,19 +11,21 @@ import GetAdminController from "../controllers/admin/account/GetAdminController"
 import multerVideo from "../config/multerVideo";
 import { UpdateLessonController } from "../controllers/admin/lesson/UpdateLessonController";
 import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLessonController";
+import UpdateAdminController from "../controllers/admin/account/UpdateAdminController";
 
 const router = Router();
 
 //login & register routes
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);
-router.get("/", GetAdminController);
+router.put("/", verifyTokenAdmin, UpdateAdminController);
+router.get("/", verifyTokenAdmin, GetAdminController);
 
 //courses routes
 router.post("/course", verifyTokenAdmin, CreateCourseController);
 router.get("/courses", GetAllCoursesController);
 
-router.get("/course/:id", GetAllLessonsInACourseController);
+router.get("/course/:id", verifyTokenAdmin, GetAllLessonsInACourseController);
 
 //lesson routes
 router.post(

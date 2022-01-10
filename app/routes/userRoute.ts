@@ -9,9 +9,10 @@ import { UpdateProfileController } from "../controllers/user/account/UpdateProfi
 import multer from "multer";
 import multerPhoto from "../config/multerPhoto";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
-import GetCourseController from "../controllers/user/course/GetCourseController";
-import { AddCourseToCart } from "../controllers/user/course/ AddCourseToCart";
+import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
+import { AddCourseToCart } from "../controllers/user/cart/AddCourseToCart";
 import { ListCoursesFromCart } from "../controllers/user/cart/ListCoursesFromCart";
+
 
 const router = Router();
 
@@ -32,7 +33,7 @@ router.put(
 //courses routes
 
 router.get("/courses", GetAllCoursesController);
-router.get("/course/:id", GetCourseController);
+router.get("/course/:id", GetAllLessonsInACourseController);
 router.post("/cart", verifyToken, AddCourseToCart);
 router.get("/cart", verifyToken, ListCoursesFromCart);
 

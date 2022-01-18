@@ -24,6 +24,9 @@ export class Courses {
   @Column()
   prevideo: string;
 
+  @Column()
+  discount: number;
+
   @CreateDateColumn()
   created_at: Date;
 

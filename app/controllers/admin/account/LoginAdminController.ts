@@ -1,4 +1,3 @@
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
@@ -20,7 +19,8 @@ export const LoginAdminController = async (req: Request, res: Response) => {
       if (password_valid) {
         const token = jwt.sign(
           { id: user.id, email: user.email, name: user.name },
-          process.env.SECRET_ADMIN
+          process.env.SECRET_ADMIN,
+          { expiresIn: "15d" }
         );
         return res.status(200).json({
           token: token,

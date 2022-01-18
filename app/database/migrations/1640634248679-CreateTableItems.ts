@@ -25,6 +25,11 @@ export class CreateTableItems1640634248679 implements MigrationInterface {
             type: "float",
             isNullable: false,
           },
+          {
+            name: "discount",
+            type: "float",
+            isNullable: true,
+          },
         ],
 
         foreignKeys: [

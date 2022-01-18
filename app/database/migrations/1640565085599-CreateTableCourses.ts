@@ -40,6 +40,11 @@ export class CreateTableCourses1640565085599 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "discount",
+            type: "float",
+            isNullable: true,
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",

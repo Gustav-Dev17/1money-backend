@@ -4,7 +4,8 @@ import { Request, Response } from "express";
 
 export const CreateCourseController = async (req: Request, res: Response) => {
   try {
-    const { name, description, duration, price, cover, prevideo } = req.body;
+    const { name, description, duration, price, cover, prevideo, discount } =
+      req.body;
     const repo = getRepository(Courses);
     if (await repo.findOne({ name })) {
       return res.status(409).json({ message: "Name already exists!" });
@@ -16,6 +17,7 @@ export const CreateCourseController = async (req: Request, res: Response) => {
       price,
       cover,
       prevideo,
+      discount,
     });
 
     await repo.save(course);

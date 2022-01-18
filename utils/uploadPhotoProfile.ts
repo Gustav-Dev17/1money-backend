@@ -23,12 +23,11 @@ export const uploadPhotoProfile = async (buffer, photo) => {
 };
 
 export const deletePhoto = async (key) => {
-    s3.deleteObject({
-      Bucket: "uploadfileteste2",
-      Key: key,
-    }).promise().then(() => {
-        console.log("Enviado")
-    }).catch(err => {
-        
-    })
+  s3.deleteObject({
+    Bucket: "uploadfileteste2",
+    Key: key,
+  })
+    .promise()
+    .then(() => {})
+    .catch((err) => {});
 };

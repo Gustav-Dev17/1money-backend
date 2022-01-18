@@ -21,7 +21,7 @@ export const UpdateProfileController = async (req: Request, res: Response) => {
     const { buffer }: any = photo;
     if (photo) {
       const key = user.key ? user.key : "key-aleatorio";
-      deletePhoto(key);
+      await deletePhoto(key);
     }
     const file = await uploadPhotoProfile(buffer, photo);
     user.picture = photo ? file.Location : user.picture;

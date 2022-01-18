@@ -38,11 +38,6 @@ export class CreateTableCards1640738468745 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: "security_cod",
-            type: "varchar",
-            isNullable: false,
-          },
-          {
             name: "created_at",
             type: "timestamp",
             default: "now()",

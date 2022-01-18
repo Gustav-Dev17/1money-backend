@@ -42,4 +42,5 @@ router.put(
 );
 router.delete("/lesson/:id", verifyTokenAdmin, DeleteLessonController);
 
+
 export default router;

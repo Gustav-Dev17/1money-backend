@@ -22,7 +22,10 @@ export class Item {
   course_id: string;
 
   @Column()
-  total_price: number
+  total_price: number;
+
+  @Column()
+  discount: number;
 
   @ManyToOne(() => Actions)
   @JoinColumn({ name: "action_id" })

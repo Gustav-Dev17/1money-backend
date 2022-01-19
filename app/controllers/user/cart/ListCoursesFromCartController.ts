@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { Actions, ActionSituation } from "../../../entities/Action";
 import { Item } from "../../../entities/Item";
 
-export const ListCoursesFromCart = async (req: Request, res: Response) => {
+export const ListCoursesFromCartController = async (req: Request, res: Response) => {
   try {
     const repoActions = getRepository(Actions);
     const repoItem = getRepository(Item);

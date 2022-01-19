@@ -18,8 +18,8 @@ const router = Router();
 //login & register routes
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);
-router.put("/", verifyTokenAdmin, UpdateAdminController);
 router.get("/", verifyTokenAdmin, GetAdminController);
+router.put("/", verifyTokenAdmin, UpdateAdminController);
 
 //courses routes
 router.post("/course", verifyTokenAdmin, CreateCourseController);

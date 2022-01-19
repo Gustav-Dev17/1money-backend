@@ -19,13 +19,13 @@ export class Courses {
   price: number;
 
   @Column()
+  discount: number;
+
+  @Column()
   cover: string;
 
   @Column()
   prevideo: string;
-
-  @Column()
-  discount: number;
 
   @CreateDateColumn()
   created_at: Date;

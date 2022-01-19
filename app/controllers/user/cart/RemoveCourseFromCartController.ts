@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { Actions, ActionSituation } from "../../../entities/Action";
 import { Item } from "../../../entities/Item";
 
-export const RemoveCourseCartController = async (
+export const RemoveCourseFromCartController = async (
   req: Request,
   res: Response
 ) => {

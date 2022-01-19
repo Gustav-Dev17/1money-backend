@@ -31,6 +31,11 @@ export class CreateTableCourses1640565085599 implements MigrationInterface {
             type: "float",
           },
           {
+            name: "discount",
+            type: "float",
+            isNullable: true,
+          },
+          {
             name: "cover",
             type: "varchar",
             isNullable: false,
@@ -38,11 +43,6 @@ export class CreateTableCourses1640565085599 implements MigrationInterface {
           {
             name: "prevideo",
             type: "varchar",
-          },
-          {
-            name: "discount",
-            type: "float",
-            isNullable: true,
           },
           {
             name: "created_at",

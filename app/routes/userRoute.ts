@@ -10,10 +10,10 @@ import multer from "multer";
 import multerPhoto from "../config/multerPhoto";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
-import { AddCourseToCart } from "../controllers/user/cart/AddCourseToCart";
-import { ListCoursesFromCart } from "../controllers/user/cart/ListCoursesFromCart";
+import { AddCourseToCartController } from "../controllers/user/cart/AddCourseToCartController";
+import { ListCoursesFromCartController } from "../controllers/user/cart/ListCoursesFromCartController";
 import { BuyCourseController } from "../controllers/user/purchase/BuyCourseController";
-import { RemoveCourseCartController } from "../controllers/user/cart/RemoveCourseCartController";
+import { RemoveCourseFromCartController } from "../controllers/user/cart/RemoveCourseFromCartController";
 
 const router = Router();
 
@@ -35,11 +35,15 @@ router.put(
 
 router.get("/courses", GetAllCoursesController);
 router.get("/course/:id", GetAllLessonsInACourseController);
-router.post("/cart", verifyToken, AddCourseToCart);
-router.get("/cart", verifyToken, ListCoursesFromCart);
+
+//cart routes
+
+router.post("/cart", verifyToken, AddCourseToCartController);
+router.get("/cart", verifyToken, ListCoursesFromCartController);
+router.delete("/cart/:id", verifyToken, RemoveCourseFromCartController)
+
+//purchase routes
 
 router.post("/purchase", verifyToken, BuyCourseController);
-router.delete("/cart/:id", verifyToken, RemoveCourseCartController);
-//lessons routes
 
 export default router;

@@ -6,7 +6,7 @@ import {
   uploadPhotoProfile,
 } from "../../../../utils/uploadPhotoProfile";
 
-export const UpdateProfileController = async (req: Request, res: Response) => {
+export const UpdateUserProfileController = async (req: Request, res: Response) => {
   try {
     const { id } = req;
     const repo = getRepository(Users);

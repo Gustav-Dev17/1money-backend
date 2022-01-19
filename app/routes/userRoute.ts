@@ -5,7 +5,7 @@ import DeleteUserController from "../controllers/user/account/DeleteUserControll
 import GetUserController from "../controllers/user/account/GetUserController";
 import verifyToken from "../middlewares/VerifyToken";
 import UpdateUserController from "../controllers/user/account/UpdateUserController";
-import { UpdateProfileController } from "../controllers/user/account/UpdateProfileController";
+import { UpdateUserProfileController } from "../controllers/user/account/UpdateUserProfileController";
 import multer from "multer";
 import multerPhoto from "../config/multerPhoto";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
@@ -28,7 +28,7 @@ router.put(
   "/profile",
   verifyToken,
   multer(multerPhoto).single("photo"),
-  UpdateProfileController
+  UpdateUserProfileController
 );
 
 //courses routes

@@ -32,7 +32,7 @@ router.put(
 
 //courses routes
 router.post("/course", verifyTokenAdmin, CreateCourseController);
-router.get("/courses", GetAllCoursesController);
+router.get("/courses", verifyTokenAdmin, GetAllCoursesController);
 
 router.get("/course/:id", verifyTokenAdmin, GetAllLessonsInACourseController);
 

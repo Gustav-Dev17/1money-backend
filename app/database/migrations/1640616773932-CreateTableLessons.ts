@@ -34,6 +34,7 @@ export class CreateTableLesson1640616773932 implements MigrationInterface {
           {
             name: "resource",
             type: "varchar",
+            isNullable: true,
           },
           {
             name: "key",

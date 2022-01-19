@@ -4,25 +4,24 @@ import { Request, Response } from "express";
 
 export const CreateCourseController = async (req: Request, res: Response) => {
   try {
-    const { name, description, duration, price, cover, prevideo, discount } =
+    const { name, description, duration, price, discount, cover, prevideo } =
       req.body;
     const repo = getRepository(Courses);
     if (await repo.findOne({ name })) {
-      return res.status(409).json({ message: "Name already exists!" });
+      return res.status(409).json({ message: "Course name already exists!" });
     }
     const course = repo.create({
       name,
       description,
       duration,
       price,
+      discount,
       cover,
       prevideo,
-      discount,
     });
-
     await repo.save(course);
     return res.json(course);
   } catch {
-    return res.status(400).json({ message: "Error when creating a course" });
+    return res.status(400).json({ message: "Error when creating course" });
   }
 };

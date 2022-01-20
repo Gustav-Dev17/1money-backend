@@ -4,21 +4,21 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 import Stripe from "stripe";
 import { getRepository } from "typeorm";
 import { Actions, ActionSituation } from "../../../entities/Action";
+import { Courses } from "../../../entities/Course";
 import { Item } from "../../../entities/Item";
 const stripe = new Stripe(stripeSecretKey, { apiVersion: "2020-08-27" });
 
-
-export const BuyCourseController = async (
+export const BuyCourseOnlyController = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const repoActions = getRepository(Actions);
-    const actions = await repoActions.findOne({
-      id: req.body.action_id,
-      situation: ActionSituation.CA,
-    });
+    const repoItems = getRepository(Item);
+    const repoCourse = getRepository(Courses);
+    const course = await repoCourse.findOne({ id: req.body.course_id });
+    if (!course) return res.status(404).json({ message: "Course not found" });
 
     const cardToken = await stripe.tokens.create({
       card: {
@@ -31,7 +31,7 @@ export const BuyCourseController = async (
     });
 
     const charge = await stripe.charges.create({
-      amount: actions.final_price * 100,
+      amount: (course.price - course.discount) * 100,
       currency: "brl",
       source: cardToken.id,
       receipt_email: req.body.email,
@@ -39,25 +39,39 @@ export const BuyCourseController = async (
     });
 
     if (charge.status === "succeeded") {
-      const actionsCO = await repoActions.findOne({
+      const actions = await repoActions.findOne({
         user_id: req.id,
         situation: ActionSituation.CO,
       });
-      if (!actionsCO) {
-        actions.situation = ActionSituation.CO;
-        await repoActions.save(actions);
-        return res.json({ message: "Compra efetuada" });
+
+      if (!actions) {
+        const action = repoActions.create({
+          user_id: req.id,
+          situation: ActionSituation.CO,
+          payment: "Teste",
+          discount: course.discount,
+          total_price: course.price,
+          final_price: course.price - course.discount,
+        });
+        await repoActions.save(action);
       }
 
-      //const repoItem = getRepository(Item);
+      const newActions = await repoActions.findOne({
+        user_id: req.id,
+        situation: ActionSituation.CO,
+      });
+      console.log(newActions);
 
-      await getRepository(Item)
-        .createQueryBuilder()
-        .update()
-        .set({ action_id: actionsCO.id })
-        .execute();
-      await repoActions.delete(req.body.action_id);
-      return res.status(200).send({ Success: charge });
+      const item = repoItems.create({
+        course_id: course.id,
+        action_id: newActions.id,
+        discount: course.discount,
+        total_price: course.price,
+      });
+
+      await repoItems.save(item);
+
+      return res.status(200).send({ Success: "Ok" });
     } else {
       return res
         .status(400)

@@ -15,6 +15,8 @@ import { UpdateUserProfileController } from "../controllers/user/account/UpdateU
 import { ListCoursesFromCartController } from "../controllers/user/cart/ListCoursesFromCartController";
 import { RemoveCourseFromCartController } from "../controllers/user/cart/RemoveCourseFromCartController";
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
+import { BuyCourseOnlyController } from "../controllers/user/purchase/BuyCourseOnlyController";
+import { GetCoursesPurchaseController } from "../controllers/user/course/GetCoursesPurchaseController";
 
 const router = Router();
 
@@ -38,9 +40,11 @@ router.get("/course/:id", GetAllLessonsInACourseController);
 //cart routes
 router.post("/cart", verifyToken, AddCourseToCartController);
 router.get("/cart", verifyToken, ListCoursesFromCartController);
-router.delete("/cart/:id", verifyToken, RemoveCourseFromCartController)
+router.delete("/cart/:id", verifyToken, RemoveCourseFromCartController);
 
 //purchase routes
 router.post("/purchase", verifyToken, BuyCourseController);
+router.post("/purchase/only", verifyToken, BuyCourseOnlyController);
+router.get("/purchase", verifyToken, GetCoursesPurchaseController);
 
 export default router;

@@ -23,7 +23,7 @@ export const RemoveCourseFromCartController = async (
       situation: ActionSituation.CA,
     });
     const itemCart = await repoItem.findOne({
-      where: { action_id: actions.id },
+      where: { action_id: actions.id, course_id: req.params.id },
     });
     if (!itemCart) {
       return res.status(404).json({ message: "Item Not Found" });

@@ -17,6 +17,8 @@ import { RemoveCourseFromCartController } from "../controllers/user/cart/RemoveC
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
 import { BuyCourseOnlyController } from "../controllers/user/purchase/BuyCourseOnlyController";
 import { GetCoursesPurchaseController } from "../controllers/user/course/GetCoursesPurchaseController";
+import { AddCourseToFavoritesController } from "../controllers/user/favorites/AddCourseToFavoritesController";
+import { ListFavoritesCoursesController } from "../controllers/user/favorites/ListFavoritesCoursesController";
 
 const router = Router();
 
@@ -46,5 +48,9 @@ router.delete("/cart/:id", verifyToken, RemoveCourseFromCartController);
 router.post("/purchase", verifyToken, BuyCourseController);
 router.post("/purchase/only", verifyToken, BuyCourseOnlyController);
 router.get("/purchase", verifyToken, GetCoursesPurchaseController);
+
+//favorite courses
+router.post("/favorite", verifyToken, AddCourseToFavoritesController);
+router.get("/favorite", verifyToken, ListFavoritesCoursesController);
 
 export default router;

@@ -9,17 +9,20 @@ import DeleteUserController from "../controllers/user/account/DeleteUserControll
 import { Router } from "express";
 import { BuyCourseController } from "../controllers/user/purchase/BuyCourseController";
 import { CreateUserController } from "../controllers/user/account/CreateUserController";
+import { SearchCoursesController } from "../controllers/user/course/SearchCoursesController";
+import { BuyCourseOnlyController } from "../controllers/user/purchase/BuyCourseOnlyController";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
 import { AddCourseToCartController } from "../controllers/user/cart/AddCourseToCartController";
 import { UpdateUserProfileController } from "../controllers/user/account/UpdateUserProfileController";
+import { GetCoursesPurchaseController } from "../controllers/user/course/GetCoursesPurchaseController";
 import { ListCoursesFromCartController } from "../controllers/user/cart/ListCoursesFromCartController";
 import { RemoveCourseFromCartController } from "../controllers/user/cart/RemoveCourseFromCartController";
-import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
-import { BuyCourseOnlyController } from "../controllers/user/purchase/BuyCourseOnlyController";
-import { GetCoursesPurchaseController } from "../controllers/user/course/GetCoursesPurchaseController";
 import { AddCourseToFavoritesController } from "../controllers/user/favorites/AddCourseToFavoritesController";
 import { ListFavoritesCoursesController } from "../controllers/user/favorites/ListFavoritesCoursesController";
+
 import { RemoveCourseFromFavoriteController } from "../controllers/user/favorites/RemoveCourseFromFavoriteController";
+
+import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
 
 const router = Router();
 
@@ -37,6 +40,7 @@ router.put(
 );
 
 //courses routes
+router.get("/courses", SearchCoursesController);
 router.get("/courses", GetAllCoursesController);
 router.get("/course/:id", GetAllLessonsInACourseController);
 

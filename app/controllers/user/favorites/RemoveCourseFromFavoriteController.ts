@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { Actions, ActionSituation } from "../../../entities/Action";
 import { Item } from "../../../entities/Item";
 
-export const RemoveCourseFromCartController = async (
+export const RemoveCourseFromFavoriteController = async (
   req: Request,
   res: Response
 ) => {
@@ -14,39 +14,24 @@ export const RemoveCourseFromCartController = async (
 
     const actions = await repoActions.findOne({
       user_id: req.id,
-      situation: ActionSituation.CA,
+      situation: ActionSituation.FA,
     });
-    const itemCart = await repoItem.findOne({
+    const itemFavorite = await repoItem.findOne({
       where: { action_id: actions.id, course_id: id },
     });
-    if (!itemCart) {
+    if (!itemFavorite) {
       return res.status(404).json({ message: "Item Not Found" });
     }
-    await repoItem.delete(itemCart.id);
+    await repoItem.delete(itemFavorite.id);
 
-    const itemsCart = await repoItem.find({
+    const itemsFavorites = await repoItem.find({
       where: { action_id: actions.id },
     });
 
-    if (itemsCart.length <= 0) {
+    if (itemsFavorites.length <= 0) {
       await repoActions.delete(actions.id);
       return res.status(200).json({ message: "removed from cart" });
     }
-    const totalItemsPrice = await repoItem
-      .createQueryBuilder("item")
-      .select("SUM(item.total_price)", "total")
-      .where("action_id = :action", { action: actions.id })
-      .getRawOne();
-    const totalItemsDiscount = await repoItem
-      .createQueryBuilder("item")
-      .select("SUM(item.discount)", "discount")
-      .where("action_id = :action", { action: actions.id })
-      .getRawOne();
-    const { total } = totalItemsPrice;
-    const { discount } = totalItemsDiscount;
-    actions.final_price = total - discount;
-    actions.discount = discount;
-    actions.total_price = total;
     await repoActions.save(actions);
 
     return res.status(200).json({ message: "removed from cart" });

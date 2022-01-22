@@ -30,6 +30,7 @@ export const AddCourseToFavoritesController = async (
         total_price: 0,
         user_id: req.id,
         situation: ActionSituation.FA,
+        payment: "Teste"
       });
       const itemCart = repoItem.create({
         action_id: actionFavorite.id,

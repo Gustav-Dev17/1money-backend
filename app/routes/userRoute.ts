@@ -19,6 +19,7 @@ import { BuyCourseOnlyController } from "../controllers/user/purchase/BuyCourseO
 import { GetCoursesPurchaseController } from "../controllers/user/course/GetCoursesPurchaseController";
 import { AddCourseToFavoritesController } from "../controllers/user/favorites/AddCourseToFavoritesController";
 import { ListFavoritesCoursesController } from "../controllers/user/favorites/ListFavoritesCoursesController";
+import { RemoveCourseFromFavoriteController } from "../controllers/user/favorites/RemoveCourseFromFavoriteController";
 
 const router = Router();
 
@@ -52,5 +53,6 @@ router.get("/purchase", verifyToken, GetCoursesPurchaseController);
 //favorite courses
 router.post("/favorite", verifyToken, AddCourseToFavoritesController);
 router.get("/favorite", verifyToken, ListFavoritesCoursesController);
+router.delete("/favorite/:id", verifyToken, RemoveCourseFromFavoriteController);
 
 export default router;

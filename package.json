@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/amazonsoft-tech/1money-api#readme",
   "dependencies": {
+    "@types/nodemailer": "^6.4.4",
     "@types/uuid": "^8.3.3",
     "aws-sdk": "^2.1048.0",
     "bcrypt": "^5.0.1",
@@ -34,6 +35,7 @@
     "multer-s3": "^2.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.12.0",

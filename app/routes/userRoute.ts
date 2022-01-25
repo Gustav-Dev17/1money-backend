@@ -5,6 +5,7 @@ import GetUserController from "../controllers/user/account/GetUserController";
 import LoginUserController from "../controllers/user/account/LoginUserController";
 import UpdateUserController from "../controllers/user/account/UpdateUserController";
 import DeleteUserController from "../controllers/user/account/DeleteUserController";
+import ResetPasswordController from "../controllers/user/account/ResetPasswordController";
 
 import { Router } from "express";
 import { BuyCourseController } from "../controllers/user/purchase/BuyCourseController";
@@ -19,16 +20,15 @@ import { ListCoursesFromCartController } from "../controllers/user/cart/ListCour
 import { RemoveCourseFromCartController } from "../controllers/user/cart/RemoveCourseFromCartController";
 import { AddCourseToFavoritesController } from "../controllers/user/favorites/AddCourseToFavoritesController";
 import { ListFavoritesCoursesController } from "../controllers/user/favorites/ListFavoritesCoursesController";
-
-import { RemoveCourseFromFavoriteController } from "../controllers/user/favorites/RemoveCourseFromFavoriteController";
-
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
+import { RemoveCourseFromFavoriteController } from "../controllers/user/favorites/RemoveCourseFromFavoriteController";
 
 const router = Router();
 
 //profile routes
 router.post("/register", CreateUserController);
 router.post("/login", LoginUserController);
+router.post("/reset_password", ResetPasswordController);
 router.put("/", verifyToken, UpdateUserController);
 router.get("/", verifyToken, GetUserController);
 router.delete("/", verifyToken, DeleteUserController);
@@ -58,5 +58,3 @@ router.get("/purchase", verifyToken, GetCoursesPurchaseController);
 router.post("/favorite", verifyToken, AddCourseToFavoritesController);
 router.get("/favorite", verifyToken, ListFavoritesCoursesController);
 router.delete("/favorite/:id", verifyToken, RemoveCourseFromFavoriteController);
-
-export default router;

@@ -13,14 +13,18 @@ const DeleteUserController_1 = __importDefault(require("../controllers/user/acco
 const express_1 = require("express");
 const BuyCourseController_1 = require("../controllers/user/purchase/BuyCourseController");
 const CreateUserController_1 = require("../controllers/user/account/CreateUserController");
+const SearchCoursesController_1 = require("../controllers/user/course/SearchCoursesController");
+const BuyCourseOnlyController_1 = require("../controllers/user/purchase/BuyCourseOnlyController");
 const GetAllCoursesController_1 = require("../controllers/user/course/GetAllCoursesController");
 const AddCourseToCartController_1 = require("../controllers/user/cart/AddCourseToCartController");
 const UpdateUserProfileController_1 = require("../controllers/user/account/UpdateUserProfileController");
+const GetCoursesPurchaseController_1 = require("../controllers/user/course/GetCoursesPurchaseController");
 const ListCoursesFromCartController_1 = require("../controllers/user/cart/ListCoursesFromCartController");
 const RemoveCourseFromCartController_1 = require("../controllers/user/cart/RemoveCourseFromCartController");
+const AddCourseToFavoritesController_1 = require("../controllers/user/favorites/AddCourseToFavoritesController");
+const ListFavoritesCoursesController_1 = require("../controllers/user/favorites/ListFavoritesCoursesController");
+const RemoveCourseFromFavoriteController_1 = require("../controllers/user/favorites/RemoveCourseFromFavoriteController");
 const GetAllLessonsInACourseController_1 = require("../controllers/admin/course/GetAllLessonsInACourseController");
-const BuyCourseOnlyController_1 = require("../controllers/user/purchase/BuyCourseOnlyController");
-const GetCoursesPurchaseController_1 = require("../controllers/user/course/GetCoursesPurchaseController");
 const router = (0, express_1.Router)();
 //profile routes
 router.post("/register", CreateUserController_1.CreateUserController);
@@ -30,6 +34,7 @@ router.get("/", VerifyToken_1.default, GetUserController_1.default);
 router.delete("/", VerifyToken_1.default, DeleteUserController_1.default);
 router.put("/profile", VerifyToken_1.default, (0, multer_1.default)(multerPhoto_1.default).single("photo"), UpdateUserProfileController_1.UpdateUserProfileController);
 //courses routes
+router.get("/courses", SearchCoursesController_1.SearchCoursesController);
 router.get("/courses", GetAllCoursesController_1.GetAllCoursesController);
 router.get("/course/:id", GetAllLessonsInACourseController_1.GetAllLessonsInACourseController);
 //cart routes
@@ -40,4 +45,8 @@ router.delete("/cart/:id", VerifyToken_1.default, RemoveCourseFromCartController
 router.post("/purchase", VerifyToken_1.default, BuyCourseController_1.BuyCourseController);
 router.post("/purchase/only", VerifyToken_1.default, BuyCourseOnlyController_1.BuyCourseOnlyController);
 router.get("/purchase", VerifyToken_1.default, GetCoursesPurchaseController_1.GetCoursesPurchaseController);
+//favorite courses
+router.post("/favorite", VerifyToken_1.default, AddCourseToFavoritesController_1.AddCourseToFavoritesController);
+router.get("/favorite", VerifyToken_1.default, ListFavoritesCoursesController_1.ListFavoritesCoursesController);
+router.delete("/favorite/:id", VerifyToken_1.default, RemoveCourseFromFavoriteController_1.RemoveCourseFromFavoriteController);
 exports.default = router;

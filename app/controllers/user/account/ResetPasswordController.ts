@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { Users } from "../../../entities/User";
 import { getRepository } from "typeorm";
-import { resetPassword } from "../../../../utils/passwordReset";
+import {resetPassword} from "../../../../utils/passwordReset";
 
 const ResetPasswordController = async (req: Request, res: Response) => {
     try {

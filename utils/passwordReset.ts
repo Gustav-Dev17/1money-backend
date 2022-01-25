@@ -1,14 +1,12 @@
-
 import nodemailer from "nodemailer";
-require("dotenv").config();
 
-export const resetPassword = (emailUsuario, newPassword) => {
+export const resetPassword = (emailUsuario: string, newPassword: string) => {
   const remetente = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
     port: 2525,
     auth: {
       user: "dcc68d5b86bd62",
-      pass: "ae285c47cc9116"
+      pass: "ae285c47cc9116",
     },
   });
 
@@ -27,4 +25,3 @@ export const resetPassword = (emailUsuario, newPassword) => {
   });
 };
 
-module.exports = resetPassword

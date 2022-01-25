@@ -58,3 +58,5 @@ router.get("/purchase", verifyToken, GetCoursesPurchaseController);
 router.post("/favorite", verifyToken, AddCourseToFavoritesController);
 router.get("/favorite", verifyToken, ListFavoritesCoursesController);
 router.delete("/favorite/:id", verifyToken, RemoveCourseFromFavoriteController);
+
+export default router;

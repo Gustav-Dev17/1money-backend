@@ -3,6 +3,7 @@ import multerPhoto from "../config/multerPhoto";
 import multerVideo from "../config/multerVideo";
 import GetAdminController from "../controllers/admin/account/GetAdminController";
 import UpdateAdminController from "../controllers/admin/account/UpdateAdminController";
+import ResetAdminPasswordController from "../controllers/admin/account/ResetAdminPasswordController";
 
 import { Router } from "express";
 import { verifyTokenAdmin } from "../middlewares/VerifyTokenAdmin";
@@ -16,11 +17,13 @@ import { GetAllCoursesController } from "../controllers/admin/course/GetAllCours
 import { UpdateAdminProfileController } from "../controllers/admin/account/UpdateAdminProfileController";
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
 
+
 const router = Router();
 
 //login & register routes
 router.post("/register", CreateAdminController);
 router.post("/login", LoginAdminController);
+router.post("/reset_password", ResetAdminPasswordController);
 router.get("/", verifyTokenAdmin, GetAdminController);
 router.put("/", verifyTokenAdmin, UpdateAdminController);
 router.put(

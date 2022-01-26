@@ -5,8 +5,10 @@ import Stripe from "stripe";
 import { getRepository } from "typeorm";
 import { Actions, ActionSituation } from "../../../entities/Action";
 import { Item } from "../../../entities/Item";
-const stripe = new Stripe(stripeSecretKey, { apiVersion: "2020-08-27" });
+import { Cards } from "../../../entities/Card";
+import { Users } from "../../../entities/User";
 
+const stripe = new Stripe(stripeSecretKey, { apiVersion: "2020-08-27" });
 
 export const BuyCourseController = async (
   req: Request,
@@ -15,6 +17,33 @@ export const BuyCourseController = async (
 ) => {
   try {
     const repoActions = getRepository(Actions);
+    
+    let saveCard = false;
+
+    if (saveCard) {
+      const { name, cpf, number,  exp_month, exp_year, user_id } = req.body;
+      const cardRepo = getRepository(Cards);
+      const userSearch = getRepository(Users);
+      
+      if (await cardRepo.findOne({ number })) {
+        return res.status(409).json({ message: "This card is already saved!" });
+      }
+      if (!(await userSearch.findOne(user_id)))
+        return res.status(404).json({ message: "User not found! Please, create an account" });
+
+      const card = cardRepo.create({
+        name,
+        cpf,
+        number,
+        exp_month,
+        exp_year,
+        user_id,
+      });
+  
+      await cardRepo.save(card);
+      return res.json({ message: "Card saved!" });
+    }
+
     const actions = await repoActions.findOne({
       id: req.body.action_id,
       situation: ActionSituation.CA,

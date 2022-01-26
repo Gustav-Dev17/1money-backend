@@ -31,9 +31,9 @@ import {
 
     @Column()
     exp_year: string;
-  
+
     @Column()
-    security_cod: string;
+    user_id: string;
   
     @CreateDateColumn()
     created_at: Date;
@@ -50,11 +50,4 @@ import {
         this.id = uuid();
       }
     }
-
-    @BeforeInsert()
-      @BeforeUpdate()
-      async setSecurityCod(security_cod: string) {
-        const salt = await bcrypt.genSalt()
-        this.security_cod = await bcrypt.hash(security_cod || this.security_cod, salt)
-      }
   }

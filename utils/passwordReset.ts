@@ -2,19 +2,19 @@ import nodemailer from "nodemailer";
 
 export const resetPassword = (emailUsuario: string, newPassword: string) => {
   const remetente = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
+    host: "host",
     port: 2525,
     auth: {
-      user: "dcc68d5b86bd62",
-      pass: "ae285c47cc9116",
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD
     },
   });
 
   const emailRecuperate = {
-    from: process.env.EMAIL,
+    from: "senderexample@server.com",
     to: emailUsuario,
-    subject: "Recuperação de senha",
-    text: `Olá, sua nova senha é: ${newPassword}`,
+    subject: "Redefinição de senha – 1money",
+  text: `Olá, vimos que você solicitou uma nova senha. Sua nova senha é: ${newPassword}. Use-a para fazer login!`,
   };
   remetente.sendMail(emailRecuperate, function (error, info) {
     if (error) {

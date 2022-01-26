@@ -5,7 +5,7 @@ import GetUserController from "../controllers/user/account/GetUserController";
 import LoginUserController from "../controllers/user/account/LoginUserController";
 import UpdateUserController from "../controllers/user/account/UpdateUserController";
 import DeleteUserController from "../controllers/user/account/DeleteUserController";
-import ResetPasswordController from "../controllers/user/account/ResetPasswordController";
+import ResetUserPasswordController from "../controllers/user/account/ResetUserPasswordController";
 
 import { Router } from "express";
 import { BuyCourseController } from "../controllers/user/purchase/BuyCourseController";
@@ -28,7 +28,7 @@ const router = Router();
 //profile routes
 router.post("/register", CreateUserController);
 router.post("/login", LoginUserController);
-router.post("/reset_password", ResetPasswordController);
+router.post("/reset_password", ResetUserPasswordController);
 router.put("/", verifyToken, UpdateUserController);
 router.get("/", verifyToken, GetUserController);
 router.delete("/", verifyToken, DeleteUserController);

@@ -3,16 +3,16 @@ import "./app/database";
 import express from "express";
 import userRoute from "./app/routes/userRoute";
 import adminRoute from "./app/routes/adminRoute";
-import cors from 'cors';
+import cors from "cors";
 
 require("dotenv").config();
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000'];
 
 const options: cors.CorsOptions = {
-  origin: allowedOrigins
+  origin: "*",
+  credentials: true,
 };
 
 app.use(cors(options));

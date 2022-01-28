@@ -21,6 +21,12 @@ const options = {
 app.use((0, cors_1.default)(options));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
+app.all('*', function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });

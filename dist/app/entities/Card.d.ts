@@ -6,10 +6,9 @@ export declare class Cards {
     number: string;
     exp_month: string;
     exp_year: string;
-    security_cod: string;
+    user_id: string;
     created_at: Date;
     updated_at: Date;
     user: Users;
     constructor();
-    setSecurityCod(security_cod: string): Promise<void>;
 }

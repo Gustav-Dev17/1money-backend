@@ -10,10 +10,33 @@ const stripe_1 = __importDefault(require("stripe"));
 const typeorm_1 = require("typeorm");
 const Action_1 = require("../../../entities/Action");
 const Item_1 = require("../../../entities/Item");
+const Card_1 = require("../../../entities/Card");
+const User_1 = require("../../../entities/User");
 const stripe = new stripe_1.default(stripeSecretKey, { apiVersion: "2020-08-27" });
 const BuyCourseController = async (req, res, next) => {
     try {
         const repoActions = (0, typeorm_1.getRepository)(Action_1.Actions);
+        let saveCard = false;
+        if (saveCard) {
+            const { name, cpf, number, exp_month, exp_year, user_id } = req.body;
+            const cardRepo = (0, typeorm_1.getRepository)(Card_1.Cards);
+            const userSearch = (0, typeorm_1.getRepository)(User_1.Users);
+            if (await cardRepo.findOne({ number })) {
+                return res.status(409).json({ message: "This card is already saved!" });
+            }
+            if (!(await userSearch.findOne(user_id)))
+                return res.status(404).json({ message: "User not found! Please, create an account" });
+            const card = cardRepo.create({
+                name,
+                cpf,
+                number,
+                exp_month,
+                exp_year,
+                user_id,
+            });
+            await cardRepo.save(card);
+            return res.json({ message: "Card saved!" });
+        }
         const actions = await repoActions.findOne({
             id: req.body.action_id,
             situation: Action_1.ActionSituation.CA,

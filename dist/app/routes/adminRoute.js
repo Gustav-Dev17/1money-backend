@@ -8,6 +8,7 @@ const multerPhoto_1 = __importDefault(require("../config/multerPhoto"));
 const multerVideo_1 = __importDefault(require("../config/multerVideo"));
 const GetAdminController_1 = __importDefault(require("../controllers/admin/account/GetAdminController"));
 const UpdateAdminController_1 = __importDefault(require("../controllers/admin/account/UpdateAdminController"));
+const ResetAdminPasswordController_1 = __importDefault(require("../controllers/admin/account/ResetAdminPasswordController"));
 const express_1 = require("express");
 const VerifyTokenAdmin_1 = require("../middlewares/VerifyTokenAdmin");
 const LoginAdminController_1 = require("../controllers/admin/account/LoginAdminController");
@@ -23,6 +24,7 @@ const router = (0, express_1.Router)();
 //login & register routes
 router.post("/register", CreateAdminController_1.CreateAdminController);
 router.post("/login", LoginAdminController_1.LoginAdminController);
+router.post("/reset_password", ResetAdminPasswordController_1.default);
 router.get("/", VerifyTokenAdmin_1.verifyTokenAdmin, GetAdminController_1.default);
 router.put("/", VerifyTokenAdmin_1.verifyTokenAdmin, UpdateAdminController_1.default);
 router.put("/profile", VerifyTokenAdmin_1.verifyTokenAdmin, (0, multer_1.default)(multerPhoto_1.default).single("photo"), UpdateAdminProfileController_1.UpdateAdminProfileController);

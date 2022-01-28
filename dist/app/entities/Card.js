@@ -8,24 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cards = void 0;
 const typeorm_1 = require("typeorm");
 const uuid_1 = require("uuid");
 const User_1 = require("./User");
-const bcrypt_1 = __importDefault(require("bcrypt"));
 let Cards = class Cards {
     constructor() {
         if (!this.id) {
             this.id = (0, uuid_1.v4)();
         }
-    }
-    async setSecurityCod(security_cod) {
-        const salt = await bcrypt_1.default.genSalt();
-        this.security_cod = await bcrypt_1.default.hash(security_cod || this.security_cod, salt);
     }
 };
 __decorate([
@@ -55,7 +47,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Cards.prototype, "security_cod", void 0);
+], Cards.prototype, "user_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
@@ -69,13 +61,6 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: "user_id" }),
     __metadata("design:type", User_1.Users)
 ], Cards.prototype, "user", void 0);
-__decorate([
-    (0, typeorm_1.BeforeInsert)(),
-    (0, typeorm_1.BeforeUpdate)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], Cards.prototype, "setSecurityCod", null);
 Cards = __decorate([
     (0, typeorm_1.Entity)("cards"),
     __metadata("design:paramtypes", [])

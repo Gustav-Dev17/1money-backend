@@ -10,6 +10,7 @@ const GetUserController_1 = __importDefault(require("../controllers/user/account
 const LoginUserController_1 = __importDefault(require("../controllers/user/account/LoginUserController"));
 const UpdateUserController_1 = __importDefault(require("../controllers/user/account/UpdateUserController"));
 const DeleteUserController_1 = __importDefault(require("../controllers/user/account/DeleteUserController"));
+const ResetUserPasswordController_1 = __importDefault(require("../controllers/user/account/ResetUserPasswordController"));
 const express_1 = require("express");
 const BuyCourseController_1 = require("../controllers/user/purchase/BuyCourseController");
 const CreateUserController_1 = require("../controllers/user/account/CreateUserController");
@@ -23,12 +24,13 @@ const ListCoursesFromCartController_1 = require("../controllers/user/cart/ListCo
 const RemoveCourseFromCartController_1 = require("../controllers/user/cart/RemoveCourseFromCartController");
 const AddCourseToFavoritesController_1 = require("../controllers/user/favorites/AddCourseToFavoritesController");
 const ListFavoritesCoursesController_1 = require("../controllers/user/favorites/ListFavoritesCoursesController");
-const RemoveCourseFromFavoriteController_1 = require("../controllers/user/favorites/RemoveCourseFromFavoriteController");
 const GetAllLessonsInACourseController_1 = require("../controllers/admin/course/GetAllLessonsInACourseController");
+const RemoveCourseFromFavoriteController_1 = require("../controllers/user/favorites/RemoveCourseFromFavoriteController");
 const router = (0, express_1.Router)();
 //profile routes
 router.post("/register", CreateUserController_1.CreateUserController);
 router.post("/login", LoginUserController_1.default);
+router.post("/reset_password", ResetUserPasswordController_1.default);
 router.put("/", VerifyToken_1.default, UpdateUserController_1.default);
 router.get("/", VerifyToken_1.default, GetUserController_1.default);
 router.delete("/", VerifyToken_1.default, DeleteUserController_1.default);

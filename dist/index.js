@@ -11,7 +11,7 @@ const adminRoute_1 = __importDefault(require("./app/routes/adminRoute"));
 const cors_1 = __importDefault(require("cors"));
 require("dotenv").config();
 const app = (0, express_1.default)();
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['*'];
 const options = {
     origin: allowedOrigins
 };

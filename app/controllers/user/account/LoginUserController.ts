@@ -7,6 +7,7 @@ require("dotenv").config();
 
 const LoginUserController = async (req: Request, res: Response) => {
   try {
+    res.header("Access-Control-Allow-Origin", "*");
     const repo = getRepository(Users);
     const user = await repo.findOne({ email: req.body.email });
     if (user) {
@@ -17,7 +18,8 @@ const LoginUserController = async (req: Request, res: Response) => {
       if (password_valid) {
         const token = jwt.sign(
           { id: user.id, email: user.email, name: user.name },
-          process.env.SECRET, {expiresIn: "15d"}
+          process.env.SECRET,
+          { expiresIn: "15d" }
         );
         return res.status(200).json({
           token: token,

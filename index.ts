@@ -4,7 +4,6 @@ import "./app/database";
 import express from "express";
 import userRoute from "./app/routes/userRoute";
 import adminRoute from "./app/routes/adminRoute";
-import bodyParser from "body-parser";
 import cors from "cors";
 
 const app = express();
@@ -14,11 +13,12 @@ const options = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
+  credentials: true
 };
 
 app.use(cors(options));
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 

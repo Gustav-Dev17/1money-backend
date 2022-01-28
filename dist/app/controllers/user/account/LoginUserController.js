@@ -10,6 +10,7 @@ const typeorm_1 = require("typeorm");
 require("dotenv").config();
 const LoginUserController = async (req, res) => {
     try {
+        res.header("Access-Control-Allow-Origin", "*");
         const repo = (0, typeorm_1.getRepository)(User_1.Users);
         const user = await repo.findOne({ email: req.body.email });
         if (user) {

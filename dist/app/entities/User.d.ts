@@ -13,5 +13,5 @@ export declare class Users {
     created_at: Date;
     updated_at: Date;
     constructor();
-    setPassword(password: string): Promise<void>;
+    hashPassword(): void;
 }

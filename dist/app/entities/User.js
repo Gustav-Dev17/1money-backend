@@ -27,9 +27,8 @@ let Users = class Users {
             this.id = (0, uuid_1.v4)();
         }
     }
-    async setPassword(password) {
-        const salt = await bcrypt_1.default.genSalt();
-        this.password = await bcrypt_1.default.hash(password || this.password, salt);
+    hashPassword() {
+        this.password = bcrypt_1.default.hashSync(this.password, 10);
     }
 };
 __decorate([
@@ -76,9 +75,9 @@ __decorate([
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], Users.prototype, "setPassword", null);
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], Users.prototype, "hashPassword", null);
 Users = __decorate([
     (0, typeorm_1.Entity)("users"),
     __metadata("design:paramtypes", [])

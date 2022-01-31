@@ -4,7 +4,6 @@ import {
   CreateDateColumn,
   PrimaryColumn,
   BeforeInsert,
-  BeforeUpdate,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import bcrypt from "bcrypt";
@@ -55,7 +54,6 @@ export class Users {
   }
 
   @BeforeInsert()
-  @BeforeUpdate()
   async setPassword(password: string) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(password || this.password, salt);

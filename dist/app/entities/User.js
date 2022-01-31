@@ -75,7 +75,6 @@ __decorate([
 ], Users.prototype, "updated_at", void 0);
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
-    (0, typeorm_1.BeforeUpdate)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

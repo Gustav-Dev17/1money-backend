@@ -16,7 +16,7 @@ export enum UserType {
 @Entity("users")
 export class Users {
   @PrimaryColumn()
-  id: string;
+  id!: string;
 
   @Column({
     name: "usertype",
@@ -24,28 +24,28 @@ export class Users {
     enum: UserType,
     default: UserType.USER,
   })
-  role: UserType;
+  role!: UserType;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  email: string;
+  email!: string;
 
   @Column()
-  password: string;
+  password!: string;
 
   @Column()
-  picture: string;
+  picture!: string;
 
   @Column()
-  key: string;
+  key!: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at!: Date;
 
   @CreateDateColumn()
-  updated_at: Date;
+  updated_at!: Date;
 
   constructor() {
     if (!this.id) {

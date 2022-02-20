@@ -12,38 +12,38 @@ import { Courses } from "./Course";
 @Entity("lessons")
 export class Lessons {
   @PrimaryColumn()
-  id: string;
+  id!: string;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  sequence: string;
+  sequence!: string;
 
   @Column()
-  duration: string;
+  duration!: string;
 
   @Column()
-  video: string;
+  video!: string;
 
   @Column()
-  key: string;
+  key!: string;
 
   @Column()
-  resource: string;
+  resource!: string;
 
   @Column()
-  course_id: string;
+  course_id!: string;
+
+  @CreateDateColumn()
+  created_at!: Date;
+
+  @CreateDateColumn()
+  updated_at!: Date;
 
   @ManyToOne(() => Courses)
   @JoinColumn({ name: "course_id" })
   course: Courses;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @CreateDateColumn()
-  updated_at: Date;
 
   constructor() {
     if (!this.id) {

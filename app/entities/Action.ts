@@ -18,32 +18,32 @@ export enum ActionSituation {
 @Entity("actions")
 export class Actions {
   @PrimaryColumn()
-  id: string;
+  id!: string;
 
   @Column()
-  payment: string;
+  payment!: string;
 
   @Column({
     name: "situation",
     type: "enum",
     enum: ActionSituation,
   })
-  situation: ActionSituation;
+  situation!: ActionSituation;
 
   @Column()
-  discount: number;
+  discount!: number;
 
   @Column()
-  total_price: number;
+  total_price!: number;
 
   @Column()
-  final_price: number;
+  final_price!: number;
 
   @CreateDateColumn()
-  bought_at: Date;
+  bought_at!: Date;
 
   @Column()
-  user_id: string;
+  user_id!: string;
 
   @ManyToOne(() => Users)
   @JoinColumn({ name: "user_id" })

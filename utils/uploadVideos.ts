@@ -10,7 +10,7 @@ export const uploadVideos = async (buffer, photo) => {
         Key: `${Date.now()}-${photo.originalname}`,
         Body: buffer,
         ACL: "public-read",
-        ContentType: "video/mp4",
+        ContentType: "video/mp4 ",
       },
       (err) => {
         if (err) {

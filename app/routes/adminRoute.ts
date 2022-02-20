@@ -16,6 +16,7 @@ import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLesson
 import { GetAllCoursesController } from "../controllers/admin/course/GetAllCoursesController";
 import { UpdateAdminProfileController } from "../controllers/admin/account/UpdateAdminProfileController";
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
+import multerFiles from "../config/multerFiles";
 
 const router = Router();
 
@@ -36,7 +37,10 @@ router.put(
 router.post(
   "/course",
   verifyTokenAdmin,
-  multer(multerVideo).single("pre_video"),
+  multer(multerFiles).fields([
+    { name: "pre_video", maxCount: 1 },
+    { name: "cover", maxCount: 1 },
+  ]),
   CreateCourseController
 );
 router.get("/courses", verifyTokenAdmin, GetAllCoursesController);

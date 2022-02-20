@@ -1,13 +1,14 @@
 import { getRepository } from "typeorm";
 import { Users } from "../../../entities/User";
 import { Request, Response } from "express";
+import bcrypt from "bcrypt";
 
 const UpdateAdminController = async (req: Request, res: Response) => {
   try {
-    const { id } = req
+    const { id } = req;
     const repo = getRepository(Users);
     const { name, email, password, picture } = req.body;
-    const userEmail = await repo.findOne({email: email});
+    const userEmail = await repo.findOne({ email: email });
     if (userEmail) {
       return res.status(409).json({ message: "Email already exists" });
     }
@@ -16,9 +17,11 @@ const UpdateAdminController = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    const hashPassword = await bcrypt.hashSync(password, 10);
+
     user.name = name ? name : user.name;
     user.email = email ? email : user.email;
-    user.password = password ? password : user.password;
+    user.password = password ? hashPassword : user.password;
     user.picture = picture ? picture : user.picture;
 
     await repo.save(user);

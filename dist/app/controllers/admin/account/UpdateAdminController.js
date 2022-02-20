@@ -1,7 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const User_1 = require("../../../entities/User");
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const UpdateAdminController = async (req, res) => {
     try {
         const { id } = req;
@@ -15,9 +19,10 @@ const UpdateAdminController = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
+        const hashPassword = await bcrypt_1.default.hashSync(password, 10);
         user.name = name ? name : user.name;
         user.email = email ? email : user.email;
-        user.password = password ? password : user.password;
+        user.password = password ? hashPassword : user.password;
         user.picture = picture ? picture : user.picture;
         await repo.save(user);
         return res.json({

@@ -25,7 +25,13 @@ export class Courses {
   cover: string;
 
   @Column()
+  keycover: string;
+
+  @Column()
   prevideo: string;
+
+  @Column()
+  keyprevideo: string;
 
   @CreateDateColumn()
   created_at: Date;

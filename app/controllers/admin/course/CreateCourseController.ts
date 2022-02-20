@@ -10,6 +10,8 @@ export const CreateCourseController = async (req: Request, res: Response) => {
     if (await repo.findOne({ name })) {
       return res.status(409).json({ message: "Course name already exists!" });
     }
+    const pre_video = req.file;
+    console.log(pre_video);
     const course = repo.create({
       name,
       description,
@@ -18,10 +20,13 @@ export const CreateCourseController = async (req: Request, res: Response) => {
       discount,
       cover,
       prevideo,
+      keycover: "sdg",
+      keyprevideo: "dfhgh",
     });
     await repo.save(course);
     return res.json(course);
-  } catch {
+  } catch (e) {
+    console.log(e);
     return res.status(400).json({ message: "Error when creating course" });
   }
 };

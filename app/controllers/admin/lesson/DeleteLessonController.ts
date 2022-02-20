@@ -1,9 +1,7 @@
 import { getRepository } from "typeorm";
 import { Request, Response } from "express";
 import { Lessons } from "../../../entities/Lesson";
-import aws from "aws-sdk";
 import { deleteVideo } from "../../../../utils/uploadVideos";
-const s3 = new aws.S3();
 
 export const DeleteLessonController = async (req: Request, res: Response) => {
   try {

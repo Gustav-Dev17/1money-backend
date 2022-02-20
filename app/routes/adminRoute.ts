@@ -17,7 +17,6 @@ import { GetAllCoursesController } from "../controllers/admin/course/GetAllCours
 import { UpdateAdminProfileController } from "../controllers/admin/account/UpdateAdminProfileController";
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
 
-
 const router = Router();
 
 //login & register routes
@@ -34,7 +33,12 @@ router.put(
 );
 
 //courses routes
-router.post("/course", verifyTokenAdmin, CreateCourseController);
+router.post(
+  "/course",
+  verifyTokenAdmin,
+  multer(multerVideo).single("pre_video"),
+  CreateCourseController
+);
 router.get("/courses", verifyTokenAdmin, GetAllCoursesController);
 
 router.get("/course/:id", verifyTokenAdmin, GetAllLessonsInACourseController);

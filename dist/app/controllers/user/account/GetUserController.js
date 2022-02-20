@@ -10,7 +10,7 @@ const GetUserController = async (req, res) => {
         return res.json({
             name: user.name,
             email: user.email,
-            picture: user.picture,
+            picture: user.key,
         });
     }
     catch {

@@ -11,21 +11,24 @@ export const GetAllLessonsInACourseController = async (
     const { id } = req.params;
     const repoCourse = getRepository(Courses);
     const course = await repoCourse.findOne({ id: id });
-    const lessons = await getRepository(Lessons).createQueryBuilder('lessons')
-    .where({ course_id: id })
-    .select([
-      'lessons.id', 
-      'lessons.name', 
-      'lessons.sequence',
-      'lessons.duration',
-      'lessons.key', 
-      'lessons.course_id',
-      'lessons.created_at',
-      'lessons.updated_at'
-    ])
-    .getMany();
+    const lessons = await getRepository(Lessons)
+      .createQueryBuilder("lessons")
+      .where({ course_id: id })
+      .select([
+        "lessons.id",
+        "lessons.name",
+        "lessons.sequence",
+        "lessons.duration",
+        "lessons.key",
+        "lessons.course_id",
+        "lessons.created_at",
+        "lessons.updated_at",
+      ])
+      .getMany();
     return res.json({ course: course, lessons: lessons });
   } catch {
-    return res.status(400).json({ message: "Error when listing lessons in the course" });
+    return res
+      .status(400)
+      .json({ message: "Error when listing lessons in the course" });
   }
 };

@@ -10,7 +10,7 @@ const GetUserController = async (req: Request, res: Response) => {
     return res.json({
       name: user.name,
       email: user.email,
-      picture: user.picture,
+      picture: user.key,
     });
   } catch {
     return res.status(500).json({ message: "Error " });

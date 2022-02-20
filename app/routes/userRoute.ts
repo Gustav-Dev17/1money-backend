@@ -32,12 +32,7 @@ router.post("/reset_password", ResetUserPasswordController);
 router.put("/", verifyToken, UpdateUserController);
 router.get("/", verifyToken, GetUserController);
 router.delete("/", verifyToken, DeleteUserController);
-router.put(
-  "/profile",
-  verifyToken,
-  multer(multerPhoto).single("photo"),
-  UpdateUserProfileController
-);
+router.put("/profile", verifyToken, multer(multerPhoto).single("photo"), UpdateUserProfileController);
 
 //courses routes
 router.get("/courses", SearchCoursesController);

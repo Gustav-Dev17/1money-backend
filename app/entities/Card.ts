@@ -15,31 +15,31 @@ import {
   @Entity("cards")
   export class Cards {
     @PrimaryColumn()
-    id: string;
+    id!: string;
   
     @Column()
-    name: string;
+    name!: string;
   
     @Column()
-    cpf: string;
+    cpf!: string;
   
     @Column()
-    number: string;
+    number!: string;
 
     @Column()
-    exp_month: string;
+    exp_month!: string;
 
     @Column()
-    exp_year: string;
+    exp_year!: string;
 
     @Column()
-    user_id: string;
+    user_id!: string;
   
     @CreateDateColumn()
-    created_at: Date;
+    created_at!: Date;
 
     @CreateDateColumn()
-    updated_at: Date;
+    updated_at!: Date;
   
     @ManyToOne(() => Users)
     @JoinColumn({ name: "user_id" })

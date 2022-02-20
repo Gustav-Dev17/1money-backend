@@ -13,19 +13,19 @@ import { Actions } from "./Action";
 @Entity("items")
 export class Item {
   @PrimaryColumn()
-  id: string;
+  id!: string;
 
   @Column()
-  action_id: string;
+  action_id!: string;
 
   @Column()
-  course_id: string;
+  course_id!: string;
 
   @Column()
-  total_price: number;
+  total_price!: number;
 
   @Column()
-  discount: number;
+  discount!: number;
 
   @ManyToOne(() => Actions)
   @JoinColumn({ name: "action_id" })

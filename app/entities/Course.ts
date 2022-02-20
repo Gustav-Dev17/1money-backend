@@ -4,40 +4,40 @@ import { v4 as uuid } from "uuid";
 @Entity("courses")
 export class Courses {
   @PrimaryColumn()
-  id: string;
+  id!: string;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  description: string;
+  description!: string;
 
   @Column()
-  duration: string;
+  duration!: string;
 
   @Column()
-  price: number;
+  price!: number;
 
   @Column()
-  discount: number;
+  discount!: number;
 
   @Column()
-  cover: string;
+  cover!: string;
 
   @Column()
-  keycover: string;
+  keycover!: string;
 
   @Column()
-  prevideo: string;
+  prevideo!: string;
 
   @Column()
-  keyprevideo: string;
+  keyprevideo!: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at!: Date;
 
   @CreateDateColumn()
-  updated_at: Date;
+  updated_at!: Date;
 
   constructor() {
     if (!this.id) {

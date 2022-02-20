@@ -5,45 +5,36 @@ import {
   PrimaryColumn,
   ManyToOne,
   JoinColumn,
+  BeforeInsert,
+  BeforeUpdate
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Users } from "./User";
+import { Lessons } from "./Lesson";
 
-export enum ActionSituation {
-  CO = "CO",
-  CA = "CA",
-  FA = "FA",
-}
-
-@Entity("actions")
-export class Actions {
+@Entity("comments")
+export class Comments {
   @PrimaryColumn()
   id!: string;
 
   @Column()
-  payment!: string;
-
-  @Column({
-    name: "situation",
-    type: "enum",
-    enum: ActionSituation,
-  })
-  situation!: ActionSituation;
+  text!: string;
 
   @Column()
-  discount!: number;
-
-  @Column()
-  total_price!: number;
-
-  @Column()
-  final_price!: number;
-
-  @CreateDateColumn()
-  bought_at!: Date;
+  lesson_id!: string;
 
   @Column()
   user_id!: string;
+
+  @CreateDateColumn()
+  created_at!: Date;
+
+  @CreateDateColumn()
+  updated_at!: Date;
+
+  @ManyToOne(() => Lessons)
+  @JoinColumn({ name: "lesson_id" })
+  lesson: Lessons;
 
   @ManyToOne(() => Users)
   @JoinColumn({ name: "user_id" })

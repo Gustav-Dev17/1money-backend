@@ -13,6 +13,11 @@ import { CreateUserController } from "../controllers/user/account/CreateUserCont
 import { SearchCoursesController } from "../controllers/user/course/SearchCoursesController";
 import { BuyCourseOnlyController } from "../controllers/user/purchase/BuyCourseOnlyController";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
+
+import { CreateCommentController } from "../controllers/user/comment/CreateCommentController";
+import { UpdateCommentController } from "../controllers/user/comment/UpdateCommentController";
+import { DeleteCommentController } from "../controllers/user/comment/DeleteCommentController";
+
 import { AddCourseToCartController } from "../controllers/user/cart/AddCourseToCartController";
 import { UpdateUserProfileController } from "../controllers/user/account/UpdateUserProfileController";
 import { GetCoursesPurchaseController } from "../controllers/user/course/GetCoursesPurchaseController";
@@ -32,12 +37,7 @@ router.post("/reset_password", ResetUserPasswordController);
 router.put("/", verifyToken, UpdateUserController);
 router.get("/", verifyToken, GetUserController);
 router.delete("/", verifyToken, DeleteUserController);
-router.put(
-  "/profile",
-  verifyToken,
-  multer(multerPhoto).single("photo"),
-  UpdateUserProfileController
-);
+router.put("/profile", verifyToken, multer(multerPhoto).single("photo"), UpdateUserProfileController);
 
 //courses routes
 router.get("/courses", SearchCoursesController);
@@ -58,5 +58,14 @@ router.get("/purchase", verifyToken, GetCoursesPurchaseController);
 router.post("/favorite", verifyToken, AddCourseToFavoritesController);
 router.get("/favorite", verifyToken, ListFavoritesCoursesController);
 router.delete("/favorite/:id", verifyToken, RemoveCourseFromFavoriteController);
+
+//comments & answers routes
+router.post("/comment", verifyToken, CreateCommentController);
+router.put("/comment/:id", verifyToken, UpdateCommentController);
+router.delete("/comment/:id", verifyToken, DeleteCommentController);
+
+router.post("/answer", verifyToken, CreateAnswerController);
+router.put("/answer/:id", verifyToken, UpdateAnswerController);
+router.delete("/answer/:id", verifyToken, DeleteAnswerController);
 
 export default router;

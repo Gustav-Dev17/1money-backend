@@ -13,6 +13,11 @@ import { CreateCourseController } from "../controllers/admin/course/CreateCourse
 import { CreateLessonController } from "../controllers/admin/lesson/CreateLessonController";
 import { UpdateLessonController } from "../controllers/admin/lesson/UpdateLessonController";
 import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLessonController";
+
+import { CreateCommentController } from "../controllers/admin/comment/CreateCommentController";
+import { UpdateCommentController } from "../controllers/admin/comment/UpdateCommentController";
+import { DeleteCommentController } from "../controllers/admin/comment/DeleteCommentController";
+
 import { GetAllCoursesController } from "../controllers/admin/course/GetAllCoursesController";
 import { UpdateAdminProfileController } from "../controllers/admin/account/UpdateAdminProfileController";
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
@@ -25,37 +30,26 @@ router.post("/login", LoginAdminController);
 router.post("/reset_password", ResetAdminPasswordController);
 router.get("/", verifyTokenAdmin, GetAdminController);
 router.put("/", verifyTokenAdmin, UpdateAdminController);
-router.put(
-  "/profile",
-  verifyTokenAdmin,
-  multer(multerPhoto).single("photo"),
-  UpdateAdminProfileController
-);
+router.put("/profile", verifyTokenAdmin, multer(multerPhoto).single("photo"), UpdateAdminProfileController);
 
 //courses routes
-router.post(
-  "/course",
-  verifyTokenAdmin,
-  multer(multerVideo).single("pre_video"),
-  CreateCourseController
-);
+router.post("/course", verifyTokenAdmin, multer(multerVideo).single("pre_video"), CreateCourseController);
 router.get("/courses", verifyTokenAdmin, GetAllCoursesController);
 
 router.get("/course/:id", verifyTokenAdmin, GetAllLessonsInACourseController);
 
 //lesson routes
-router.post(
-  "/lesson",
-  verifyTokenAdmin,
-  multer(multerVideo).single("video"),
-  CreateLessonController
-);
-router.put(
-  "/lesson/:id",
-  verifyTokenAdmin,
-  multer(multerVideo).single("video"),
-  UpdateLessonController
-);
+router.post("/lesson", verifyTokenAdmin, multer(multerVideo).single("video"), CreateLessonController);
+router.put("/lesson/:id", verifyTokenAdmin, multer(multerVideo).single("video"), UpdateLessonController);
 router.delete("/lesson/:id", verifyTokenAdmin, DeleteLessonController);
+
+//comments & answers routes
+router.post("/comment", verifyTokenAdmin, CreateCommentController);
+router.put("/comment/:id", verifyTokenAdmin, UpdateCommentController);
+router.delete("/comment/:id", verifyTokenAdmin, DeleteCommentController);
+
+router.post("/answer", verifyTokenAdmin, CreateAnswerController);
+router.put("/answer/:id", verifyTokenAdmin, UpdateAnswerController);
+router.delete("/answer/:id", verifyTokenAdmin, DeleteAnswerController);
 
 export default router;

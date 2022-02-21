@@ -8,10 +8,10 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Users } from "./User";
-import { Lessons } from "./Lesson";
+import { Comments } from "./Comment";
 
-@Entity("comments")
-export class Comments {
+@Entity("answers")
+export class Answers {
   @PrimaryColumn()
   id!: string;
 
@@ -19,7 +19,7 @@ export class Comments {
   text!: string;
 
   @Column()
-  lesson_id!: string;
+  comment_id!: string;
 
   @Column()
   user_id!: string;
@@ -30,9 +30,9 @@ export class Comments {
   @CreateDateColumn()
   updated_at!: Date;
 
-  @ManyToOne(() => Lessons)
-  @JoinColumn({ name: "lesson_id" })
-  lesson: Lessons;
+  @ManyToOne(() => Comments)
+  @JoinColumn({ name: "comment_id" })
+  comment: Comments;
 
   @ManyToOne(() => Users)
   @JoinColumn({ name: "user_id" })

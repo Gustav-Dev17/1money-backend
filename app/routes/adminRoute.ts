@@ -13,11 +13,12 @@ import { CreateCourseController } from "../controllers/admin/course/CreateCourse
 import { CreateLessonController } from "../controllers/admin/lesson/CreateLessonController";
 import { UpdateLessonController } from "../controllers/admin/lesson/UpdateLessonController";
 import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLessonController";
-
+import { CreateAnswerController } from "../controllers/admin/answer/CreateAnswerController";
+import { DeleteAnswerController } from "../controllers/admin/answer/DeleteAnswerController";
+import { UpdateAnswerController } from "../controllers/admin/answer/UpdateAnswerController";
 import { CreateCommentController } from "../controllers/admin/comment/CreateCommentController";
 import { UpdateCommentController } from "../controllers/admin/comment/UpdateCommentController";
 import { DeleteCommentController } from "../controllers/admin/comment/DeleteCommentController";
-
 import { GetAllCoursesController } from "../controllers/admin/course/GetAllCoursesController";
 import { UpdateAdminProfileController } from "../controllers/admin/account/UpdateAdminProfileController";
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";

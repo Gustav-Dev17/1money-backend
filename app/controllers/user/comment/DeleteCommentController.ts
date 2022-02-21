@@ -4,16 +4,14 @@ import { Request, Response } from "express";
 
 export const DeleteCommentController = async (req: Request, res: Response) => {
   try {
-    const { text } = req.body;
-    
     const repo = getRepository(Comments);
-    
-    const comment = repo.create({
-      text
-    });
-    await repo.save(comment);
-    return res.json(comment);
+    const comment = await repo.findOne({ id: req.params.id });
+    if (!comment) {
+      return res.status(404).json({ message: "The comment has been deleted or no longer exists!" });
+    }
+    await repo.delete(comment);
+    return res.status(200).json({ message: "The comment has been deleted!" });
   } catch {
-    return res.status(400).json({ message: "Error when posting comment" });
+    return res.status(500).json({ message: "Error when deleting comment!" });
   }
 };

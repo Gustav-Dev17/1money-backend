@@ -10,14 +10,15 @@ import ResetUserPasswordController from "../controllers/user/account/ResetUserPa
 import { Router } from "express";
 import { BuyCourseController } from "../controllers/user/purchase/BuyCourseController";
 import { CreateUserController } from "../controllers/user/account/CreateUserController";
+import { CreateAnswerController } from "../controllers/user/answer/CreateAnswerController";
+import { UpdateAnswerController } from "../controllers/user/answer/UpdateAnswerController";
+import { DeleteAnswerController } from "../controllers/user/answer/DeleteAnswerController";
 import { SearchCoursesController } from "../controllers/user/course/SearchCoursesController";
 import { BuyCourseOnlyController } from "../controllers/user/purchase/BuyCourseOnlyController";
 import { GetAllCoursesController } from "../controllers/user/course/GetAllCoursesController";
-
 import { CreateCommentController } from "../controllers/user/comment/CreateCommentController";
 import { UpdateCommentController } from "../controllers/user/comment/UpdateCommentController";
 import { DeleteCommentController } from "../controllers/user/comment/DeleteCommentController";
-
 import { AddCourseToCartController } from "../controllers/user/cart/AddCourseToCartController";
 import { UpdateUserProfileController } from "../controllers/user/account/UpdateUserProfileController";
 import { GetCoursesPurchaseController } from "../controllers/user/course/GetCoursesPurchaseController";

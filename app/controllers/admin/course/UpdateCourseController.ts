@@ -2,6 +2,7 @@ import { getRepository } from "typeorm";
 import { Courses } from "../../../entities/Course";
 import { Request, Response } from "express";
 import {
+  deleteFile,
   uploadFileImage,
   uploadFileVideo,
 } from "../../../../utils/uploadFiles";
@@ -38,6 +39,15 @@ export const UpdateCourseController = async (req: Request, res: Response) => {
     const pre_videoKey = pre_videoUpload
       ? (await uploadFileVideo(pre_videoUpload.buffer, pre_videoUpload)).Key
       : "";
+
+    if (pre_videoUrl !== "") {
+      console.log(course.keyprevideo);
+      await deleteFile(course.keyprevideo);
+    }
+    if (coverUrl !== "") {
+      console.log(course.keycover);
+      await deleteFile(course.keycover);
+    }
 
     course.name = name ? name : course.name;
     course.cover = coverUrl ? coverUrl : course.cover;

@@ -42,14 +42,12 @@ export const uploadFileImage = async (buffer, photo) => {
   return awsUpload;
 };
 
-export const deleteFile = async (key) => {
+export const deleteFile = async (key: string) => {
   s3.deleteObject({
     Bucket: "uploadfileteste2",
     Key: key,
   })
     .promise()
-    .then(() => {
-      console.log("Enviado");
-    })
+    .then(() => {})
     .catch((err) => {});
 };

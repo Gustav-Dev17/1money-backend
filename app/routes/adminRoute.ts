@@ -17,6 +17,7 @@ import { DeleteLessonController } from "../controllers/admin/lesson/DeleteLesson
 import { GetAllCoursesController } from "../controllers/admin/course/GetAllCoursesController";
 import { UpdateAdminProfileController } from "../controllers/admin/account/UpdateAdminProfileController";
 import { GetAllLessonsInACourseController } from "../controllers/admin/course/GetAllLessonsInACourseController";
+import { UpdateCourseController } from "../controllers/admin/course/UpdateCourseController";
 
 const router = Router();
 
@@ -26,19 +27,48 @@ router.post("/login", LoginAdminController);
 router.post("/reset_password", ResetAdminPasswordController);
 router.get("/", verifyTokenAdmin, GetAdminController);
 router.put("/", verifyTokenAdmin, UpdateAdminController);
-router.put("/profile", verifyTokenAdmin, multer(multerPhoto).single("photo"), UpdateAdminProfileController);
+router.put(
+  "/profile",
+  verifyTokenAdmin,
+  multer(multerPhoto).single("photo"),
+  UpdateAdminProfileController
+);
 
 //courses routes
-router.post("/course", verifyTokenAdmin, multer(multerFiles).fields([
-  { name: "pre_video", maxCount: 1 },
-  { name: "cover", maxCount: 1 },
-]), CreateCourseController);
+router.post(
+  "/course",
+  verifyTokenAdmin,
+  multer(multerFiles).fields([
+    { name: "pre_video", maxCount: 1 },
+    { name: "cover", maxCount: 1 },
+  ]),
+  CreateCourseController
+);
 router.get("/courses", verifyTokenAdmin, GetAllCoursesController);
 router.get("/course/:id", verifyTokenAdmin, GetAllLessonsInACourseController);
+router.put(
+  "/course/:id",
+  verifyTokenAdmin,
+  multer(multerFiles).fields([
+    { name: "pre_video", maxCount: 1 },
+    { name: "cover", maxCount: 1 },
+  ]),
+  UpdateCourseController
+);
 
 //lesson routes
-router.post("/lesson", verifyTokenAdmin, multer(multerVideo).single("video"), CreateLessonController);
-router.put("/lesson/:id", verifyTokenAdmin, multer(multerVideo).single("video"), UpdateLessonController);
+router.post(
+  "/lesson",
+  verifyTokenAdmin,
+  multer(multerVideo).single("video"),
+  CreateLessonController
+);
+router.put(
+  "/lesson/:id",
+  verifyTokenAdmin,
+  multer(multerVideo).single("video"),
+  UpdateLessonController
+);
 router.delete("/lesson/:id", verifyTokenAdmin, DeleteLessonController);
 
 export default router;

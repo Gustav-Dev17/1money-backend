@@ -18,7 +18,7 @@ export const CreateCourseController = async (req: Request, res: Response) => {
     if (!coverUpload) throw new Error();
     if (!pre_videoUpload) throw new Error();
     if (pre_videoUpload.mimetype.split("/")[1] !== "mp4") {
-      throw new Error();
+      return res.status(400).json({ message: "Format video invalid" });
     }
 
     const cover = await uploadFileImage(coverUpload.buffer, coverUpload);
